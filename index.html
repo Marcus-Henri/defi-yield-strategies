@@ -126,6 +126,11 @@ blockquote.pull-quote cite {
 <a class="nav-tab" data-tab="tab-team" href="#team">Team</a>
 <a class="nav-tab" data-tab="tab-getstarted" href="#getstarted">Get Started</a>
 <div class="nav-cta">
+<a href="#getstarted"
+   onclick="document.querySelector('.nav-tab[href=\'#getstarted\']').click(); window.scrollTo({top:0,behavior:'smooth'}); return false;"
+   style="background:var(--gold);color:#000;border-radius:20px;padding:0.4rem 1.2rem;font-weight:700;font-size:0.85rem;text-decoration:none;margin-left:0.5rem;white-space:nowrap;">
+  Get Started
+</a>
 </div>
 </div>
 <button class="hamburger-btn" onclick="document.getElementById('navTabs').classList.toggle('open')">
@@ -158,7 +163,7 @@ blockquote.pull-quote cite {
 <!-- Pull Quote 1 -->
 <!-- Hero CTA / Invite Block -->
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-<a class="cta-button glass-button" href="https://defi-yield-strategies.vercel.app/" style="background: var(--gold); color: #000; border: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">Activate Your Node</a>
+<a class="cta-button glass-button" href="#getstarted" onclick="document.querySelector('.nav-tab[href=\'#getstarted\']').click(); window.scrollTo({top:0,behavior:'smooth'}); return false;" style="background: var(--gold); color: #000; border: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">Activate Your Node</a>
 <a class="glass-button dynamic-link" href="https://aid-1.gitbook.io/aid" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;" target="_blank">Protocol Details</a>
 </div>
 <!-- Part 2 Tagline -->
@@ -1957,6 +1962,45 @@ DeFi Yield Strategies is an independent community referral and educational hub, 
     <strong style="color: #D0D8E4;">Standard Legal Disclaimer:</strong> The information provided on this website, including all yield projections, node structures, and the "8-5-2" referral mechanism, is for educational and informational purposes only and should not be construed as financial, investment, or legal advice. DeFi Yield Strategies and AIDAv2 are decentralized protocols; interacting with smart contracts involves inherent technical and market risks. Neither DeFi Yield Strategies, AIDAv2, Venus Protocol, nor any associated affiliates, developers, or community members bear any responsibility or liability for capital losses, smart contract exploits, liquidation events, or network failures. "Principal Isolation Architecture" and "Lossless Cycle Restaking" describe protocol mechanics, not guarantees of absolute security or legal protections. Users deploy capital entirely at their own risk and must conduct independent research. Past performance does not guarantee future results.
 </div>
 <!-- /LEGAL DISCLAIMER -->
+
+
+<!-- STICKY INVITE BAR -->
+<div id="sticky-invite-bar" style="
+  position:fixed; bottom:0; left:0; right:0; z-index:9999;
+  background:#0D0F14; border-top:2px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  gap:1rem; padding:0.75rem 1.5rem; flex-wrap:wrap;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.5);
+  font-family:'Inter',sans-serif; font-size:0.9rem;">
+  <span style="color:#A0AFC0;">🔑 Your Access Code:</span>
+  <span style="color:var(--gold);font-weight:700;font-size:1rem;letter-spacing:0.1em;">9CHDIYSQ</span>
+  <button onclick="navigator.clipboard.writeText('9CHDIYSQ').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)})"
+    style="background:rgba(228,179,99,0.15);border:1px solid var(--gold);color:var(--gold);
+           border-radius:6px;padding:0.25rem 0.75rem;cursor:pointer;font-size:0.8rem;">Copy</button>
+  <a href="#getstarted"
+     onclick="document.getElementById('sticky-invite-bar').style.display='none'; document.querySelector('.nav-tab[href=\'#getstarted\']').click(); window.scrollTo({top:0,behavior:'smooth'}); return false;"
+     style="background:var(--gold);color:#000;border-radius:8px;padding:0.5rem 1.25rem;
+            font-weight:700;font-size:0.9rem;text-decoration:none;white-space:nowrap;">
+    Activate Your Node →
+  </a>
+  <button onclick="document.getElementById('sticky-invite-bar').style.display='none'; sessionStorage.setItem('inviteBarDismissed','1');"
+    style="background:none;border:none;color:#8A96A8;cursor:pointer;font-size:1.2rem;padding:0 0.25rem;margin-left:0.5rem;">×</button>
+</div>
+<script>
+  if(sessionStorage.getItem('inviteBarDismissed')){
+    document.getElementById('sticky-invite-bar').style.display='none';
+  }
+  // Hide bar when on Get Started tab
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('.nav-tab').forEach(function(t){
+      t.addEventListener('click',function(){
+        var bar=document.getElementById('sticky-invite-bar');
+        if(bar) bar.style.display = t.getAttribute('href')==='#getstarted' ? 'none' : 'flex';
+      });
+    });
+  });
+</script>
+<!-- /STICKY INVITE BAR -->
 
 </body>
 </html>
