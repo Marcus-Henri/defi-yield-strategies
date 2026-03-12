@@ -106,6 +106,23 @@ blockquote.pull-quote cite {
 }
 </style>
 <style>#risk-banner .tooltip-text { bottom: auto !important; top: 130% !important; }</style>
+<script>
+  function goToTab(name) {
+    var hash = '#' + name;
+    var targetId = 'tab-' + name;
+    var targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+    document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+    document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
+    targetElement.classList.add('active');
+    var activeTab = document.querySelector('.nav-tab[href="' + hash + '"]');
+    if (activeTab) activeTab.classList.add('active');
+    var navTabs = document.getElementById('navTabs');
+    if (navTabs) navTabs.classList.remove('open');
+    history.pushState(null, null, hash);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -126,11 +143,7 @@ blockquote.pull-quote cite {
 <a class="nav-tab" data-tab="tab-team" href="#team">Team</a>
 <a class="nav-tab" data-tab="tab-getstarted" href="#getstarted">Get Started</a>
 <div class="nav-cta">
-<a href="#getstarted"
-   onclick="document.querySelector('.nav-tab[href=\'#getstarted\']').click(); window.scrollTo({top:0,behavior:'smooth'}); return false;"
-   style="background:var(--gold);color:#000;border-radius:20px;padding:0.4rem 1.2rem;font-weight:700;font-size:0.85rem;text-decoration:none;margin-left:0.5rem;white-space:nowrap;">
-  Get Started
-</a>
+<button onclick="goToTab('getstarted')" style="background:var(--gold);color:#000;border-radius:20px;padding:0.4rem 1.2rem;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;margin-left:0.5rem;white-space:nowrap;font-family:'Space Grotesk',sans-serif;">Get Started</button>
 </div>
 </div>
 <button class="hamburger-btn" onclick="document.getElementById('navTabs').classList.toggle('open')">
@@ -163,7 +176,7 @@ blockquote.pull-quote cite {
 <!-- Pull Quote 1 -->
 <!-- Hero CTA / Invite Block -->
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-<a class="cta-button glass-button" href="javascript:void(0)" onclick="var t=document.querySelector('.nav-tab[href=\'#getstarted\']'); if(t){t.click();} window.scrollTo({top:0,behavior:'smooth'});" style="background: var(--gold); color: #000; border: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer;">Activate Your Node</a>
+<button class="cta-button glass-button" onclick="goToTab('getstarted')" style="background: var(--gold); color: #000; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">Activate Your Node</button>
 <a class="glass-button dynamic-link" href="https://aid-1.gitbook.io/aid" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;" target="_blank">Protocol Details</a>
 </div>
 <!-- Part 2 Tagline -->
@@ -260,6 +273,11 @@ blockquote.pull-quote cite {
   <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
 </div>
 <div><span style="display:block;text-align:center;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(123,97,255,0.4);margin-bottom:0.5rem;font-family:'Inter',sans-serif;">How It Works</span></div>
+<div style="width:100%;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;padding:1rem 2rem;">
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
+  <span style="color:rgba(123,97,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;">◆</span>
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
+</div>
 <section class="how-it-works-section section-padding" style="background: rgba(255,255,255,0.02);; position: relative; overflow: hidden;">
 <div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
 <div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
@@ -311,6 +329,11 @@ blockquote.pull-quote cite {
   <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
 </div>
 <div><span style="display:block;text-align:center;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(123,97,255,0.4);margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Social Proof</span></div>
+<div style="width:100%;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;padding:1rem 2rem;">
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
+  <span style="color:rgba(123,97,255,0.5);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;">◆</span>
+  <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,0.3),transparent);"></div>
+</div>
 <section class="social-proof-section section-padding" style="background: rgba(99, 102, 241, 0.02); padding-top: 5rem; padding-bottom: 5rem;">
 <div class="container">
 <div class="bento-grid-3" style="margin-bottom: 4rem;">
@@ -647,7 +670,7 @@ blockquote.pull-quote cite {
 </div>
 </div>
 <div style="text-align: center;">
-<button class="cta-button glass-button" onclick="setTimeout(function(){ document.getElementById('tab-getstarted').scrollIntoView(); }, 100);" onmouseout="this.style.transform='translateY(0)'" onmouseover="this.style.transform='translateY(-2px)'" style="background: #7B61FF; color: #fff; border: none; padding: 1rem 2rem; font-size: 1.1rem; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 15px rgba(123,97,255,0.3); transition: transform 0.2s; font-weight: 600;">Activate at This Tier →</button>
+<button class="cta-button glass-button" onclick="goToTab('getstarted');" onmouseout="this.style.transform='translateY(0)'" onmouseover="this.style.transform='translateY(-2px)'" style="background: #7B61FF; color: #fff; border: none; padding: 1rem 2rem; font-size: 1.1rem; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 15px rgba(123,97,255,0.3); transition: transform 0.2s; font-weight: 600;">Activate at This Tier →</button>
 </div>
 </div>
 </section>
