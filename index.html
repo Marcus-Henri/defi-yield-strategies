@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DeFi Yield Strategies</title>
+<meta content="Maximize Your Digital Assets with Intelligent Yield Strategies. High-Performance Node Staking and Passive Crypto Yield." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1773146604663" rel="stylesheet"/>
+<style>
+/* Jargon Tooltips */
+.glossary-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #7B61FF;
+    cursor: help;
+    color: #E2E8F0;
+}
+.glossary-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #13151A;
+    color: #E2E8F0;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    border: 1px solid rgba(123, 97, 255, 0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+.glossary-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
+/* PULL QUOTE CSS */
+<style>
+blockquote.pull-quote {
+  border-left: 3px solid #7B61FF;
+  padding: 20px 24px;
+  margin: 40px auto;
+  background: rgba(123,97,255,0.05);
+  border-radius: 0 8px 8px 0;
+  max-width: 800px;
+}
+blockquote.pull-quote p {
+  font-size: 18px;
+  font-style: italic;
+  color: #D0D8E4;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+blockquote.pull-quote cite {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7B61FF;
+  font-style: normal;
+  display: block;
+}
+</style>
+
+/* TOOLTIP CSS */
+<style>
+.tooltip-term {
+  border-bottom: 1px dotted #7B61FF;
+  cursor: help;
+  position: relative;
+}
+.tooltip-term .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  background: #1E2028;
+  color: #D0D8E4;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid #7B61FF;
+  border-radius: 6px;
+  padding: 10px 14px;
+  position: absolute;
+  z-index: 100;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.tooltip-term:hover .tooltip-text,
+.tooltip-term:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+<style>#risk-banner .tooltip-text { bottom: auto !important; top: 130% !important; }</style>
+</head>
+<body>
+<div class="bg-orbs">
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+</div>
+<nav class="sticky-header">
+<div class="container nav-container">
+<div class="logo">
+<span class="logo-text">DeFi Yield <span style="color: var(--gold);">Strategies</span></span>
+</div>
+<div class="nav-tabs-container" id="navTabs">
+<a class="nav-tab active" data-tab="tab-overview" href="#overview">Overview</a>
+<a class="nav-tab" data-tab="tab-earn" href="#earn">Earn</a>
+<a class="nav-tab" data-tab="tab-security" href="#security">Security</a>
+<a class="nav-tab" data-tab="tab-ecosystem" href="#ecosystem">Ecosystem</a>
+<a class="nav-tab" data-tab="tab-team" href="#team">Team</a>
+<a class="nav-tab" data-tab="tab-getstarted" href="#getstarted">Get Started</a>
+<div class="nav-cta">
+</div>
+</div>
+<button class="hamburger-btn" onclick="document.getElementById('navTabs').classList.toggle('open')">
+                ☰
+            </button>
+</div>
+</nav>
+<!-- BATCH 5 RISK BANNER -->
+<div id="risk-banner" style="display:flex; align-items:center; justify-content:center; gap:12px; background:#1A1A2E; padding:6px 16px; font-size:11px; color:#8A96A8; line-height:1.4; position:sticky; top:60px; margin-top:80px; z-index:999; border-bottom:1px solid rgba(123,97,255,0.15);">
+<span>⚠️ DeFi carries risk. Yields are variable, not guaranteed. Principal protection is via <span class="tooltip-term">Venus Protocol<span class="tooltip-text">A Binance-backed decentralised lending platform with billions in TVL, used here as the principal safe-hold layer.</span></span> — not an insurance product. Deploy only what you can afford.</span>
+<a href="#legal-disclaimer" style="color:#7B61FF; white-space:nowrap; text-decoration: underline;" onclick="document.getElementById('legal-disclaimer').scrollIntoView({behavior: 'smooth'}); return false;">Understand the Risks →</a>
+<button onclick="this.parentElement.style.display='none'; sessionStorage.setItem('riskDismissed','1');" style="background:none; border:none; color:#8A96A8; cursor:pointer; font-size:14px; padding:0 4px; margin-left:8px;">×</button>
+</div>
+<script>
+  if(sessionStorage.getItem('riskDismissed')) document.getElementById('risk-banner').style.display='none';
+</script>
+<!-- /BATCH 5 RISK BANNER -->
+<main class="" style="padding-top: 100px; min-height: 80vh;">
+<div class="tab-content active" id="tab-overview">
+<header class="hero-section" id="hero" style="padding-top: 4rem; min-height: auto;">
+<div class="container hero-stacked" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3rem;">
+<div class="hero-content" style="max-width: 900px; display: flex; flex-direction: column; align-items: center;">
+<h1 class="headline" style="margin-bottom: 1.5rem;">Precision Yield Architecture</h1>
+<p class="subheadline" style="margin-bottom: 1rem; font-size: 1.5rem; color: #fff; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">
+                            42% Daily Profit Distribution. 13–20% Average Monthly Returns. Zero Lockup. Fully On-Chain.
+                        </p>
+<p style="font-size: 1.05rem; color: #E2E8F0; margin-bottom: 2.5rem; letter-spacing: 0.05em; font-family: 'Inter', sans-serif; font-weight: 500;">
+                            Principal protected via Venus Protocol. Triple-audited by CertiK, Beosin &amp; AVE.
+                        </p>
+<!-- Pull Quote 1 -->
+<!-- Hero CTA / Invite Block -->
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+<a class="cta-button glass-button" href="https://defi-yield-strategies.vercel.app/" style="background: var(--gold); color: #000; border: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">Activate Your Node</a>
+<a class="glass-button dynamic-link" href="https://aid-1.gitbook.io/aid" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;" target="_blank">Protocol Details</a>
+</div>
+<!-- Part 2 Tagline -->
+<p style="font-size: 1rem; color: var(--gold); font-style: italic; font-family: 'Georgia', serif; margin-top: 1.5rem;">
+                            "Finance becomes conversational. Execution becomes invisible."
+                        </p>
+</div>
+</div>
+</header>
+<div class="metrics-ticker">
+<div class="container ticker-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 2rem 0;">
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">✅
+                            Platform Uptime</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700; color: #10B981;">99.9%</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">📈
+                            Avg. Monthly Return</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">13–20%</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">🔒
+                            Lock-up Period</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">0 Days</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">🤖
+                            Data Processed</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">500–600+ TB Daily</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">📊
+                            Daily Active Addresses</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">2,000,000+</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">🔗
+                            Smart Contracts Monitored</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">52,000+</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">⚡
+                            Addresses Captured</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">200,000+ per
+                            second</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">👥
+                            Community</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">100,000+ users</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">🌍
+                            Available in</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">180+ Countries</span>
+</div>
+<div class="ticker-item" style="text-align: center;">
+<span class="ticker-label" style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">🌐
+                            API Requests</span>
+<span class="ticker-value" style="font-size: 1.5rem; font-weight: 700;">120M+ monthly</span>
+</div>
+</div>
+</div><blockquote class="pull-quote">
+<p>"Trusted third parties are security holes."</p>
+<cite>— Nick Szabo</cite>
+</blockquote>
+<div class="partner-strip partners-strip" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 0;">
+<div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+<span style="font-size: 0.85rem; color: #A0AFC0; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700;">Trusted
+                        Partners &amp; Integrations</span>
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; opacity: 0.6; filter: grayscale(1);">
+<span style="color: #fff; font-weight: 600;">CoinMarketCap</span>
+<span style="color: #fff; font-weight: 600;">CoinGecko</span>
+<span style="color: #fff; font-weight: 600;">OneKey</span>
+<span style="color: #fff; font-weight: 600;">OKX Wallet</span>
+<span style="color: #fff; font-weight: 600;">Bitget Wallet</span>
+<span style="color: #fff; font-weight: 600;">TokenPocket</span>
+<span style="color: #fff; font-weight: 600;">Beosin</span>
+<span style="color: #fff; font-weight: 600;">CertiK</span>
+<span style="color: #fff; font-weight: 600;">Venus Protocol</span>
+<span style="color: #fff; font-weight: 600;">DoraHacks</span>
+</div>
+</div>
+</div>
+<section class="how-it-works-section section-padding" style="background: rgba(255,255,255,0.02);; position: relative; overflow: hidden;">
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="; position: relative; z-index: 1;">
+<div class="section-header">
+<h2>How It Works: Three Steps to Systematic Yield</h2>
+<p>Deploy your capital into a high-performance yield framework in under 5 minutes.</p>
+</div><blockquote class="pull-quote"><p>"Your original principal remains completely untouched, still sitting safely in the Venus pool."</p><cite>— AIDAv2 Protocol Documentation</cite></blockquote>
+<!-- Mobile Warning Callout -->
+<div class="bento-grid-3">
+<div class="glass-card step-card reveal" style="padding: 2.5rem; text-align: center;">
+<div class="step-number">1</div>
+<h3 style="color: #fff; margin-bottom: 1rem;">Principal Protection</h3>
+<p style="color: var(--text-muted); font-size: 0.95rem;">Your USDT is deposited into the
+                                <strong>Venus Protocol</strong> — a multi-billion dollar platform. Your base capital
+                                never
+                                touches the AI engine.
+                            </p>
+</div>
+<div class="glass-card step-card reveal" style="padding: 2.5rem; text-align: center;">
+<div class="step-number">2</div>
+<h3 style="color: #fff; margin-bottom: 1rem;">AI Yield Farming</h3>
+<p style="color: var(--text-muted); font-size: 0.95rem;">Interest earned is handed to the AI
+                                engine,
+                                executing strategies across BSC, ETH, and Polygon — analyzing 500TB of market data.</p>
+</div>
+<div class="glass-card step-card reveal" style="padding: 2.5rem; text-align: center;">
+<div class="step-number">3</div>
+<h3 style="color: #fff; margin-bottom: 1rem;">Daily Distribution</h3>
+<p style="color: var(--text-muted); font-size: 0.95rem;">70% of profits are distributed
+                                daily.
+                                Earnings compound automatically via <strong><span class="tooltip-term">LCR<span class="tooltip-text">Your principal earns interest in Venus Protocol. Only that interest enters the AI yield engine — your base capital is never at risk.</span></span></strong> — projecting up to 7.5x growth.
+                            </p>
+</div>
+</div>
+<!-- Pull Quote 2 -->
+</div>
+</section>
+<section class="social-proof-section section-padding" style="background: rgba(99, 102, 241, 0.02);">
+<div class="container">
+<div class="bento-grid-3" style="margin-bottom: 4rem;">
+<div class="stat-item reveal" style="text-align: center;">
+<div class="ticker-value" style="font-size: 3rem; color: var(--gold);">2,400+</div>
+<p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;">Active Global
+                                Nodes
+                            </p>
+</div>
+<div class="stat-item reveal" style="text-align: center;">
+<div class="ticker-value" style="font-size: 3rem; color: var(--gold);">40+</div>
+<p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;">Participating
+                                Countries</p>
+</div>
+<div class="stat-item reveal" style="text-align: center;">
+<div class="ticker-value" style="font-size: 3rem; color: var(--gold);">$14M+</div>
+<p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif;">Protocol
+                                Deployment
+                                Volume</p>
+</div>
+</div>
+<div class="testimonials-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+<div class="glass-card" style="padding: 2rem;">
+<p style="margin-bottom: 1.5rem; font-style: italic; color: var(--text-main);">"The on-chain
+                                transparency is exactly what I was looking for. No lockups, no opaque trading. Just
+                                verifiable
+                                profit."</p>
+<div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 700;">— HNW
+                                Individual,
+                                Singapore</div>
+</div>
+<div class="glass-card" style="padding: 2rem;">
+<p style="margin-bottom: 1.5rem; font-style: italic; color: var(--text-main);">"Managing 3
+                                nodes
+                                through the <span class="tooltip-term">8-5-2<span class="tooltip-text">Three-tier community reward system: 8% on direct referrals, 5% on their referrals, 2% on the third level — all paid in USDT daily.</span></span> system. The compounding math is solid and the interface is highly
+                                institutional."</p>
+<div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 700;">— DeFi
+                                Strategist,
+                                Switzerland</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="tab-content" id="tab-earn">
+<section class="profit-explainer-section section-padding" style="position: relative; overflow: hidden; padding-top: 6rem;">
+<!-- Orbs -->
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="position: relative; z-index: 1;">
+<div class="section-header text-center" style="text-align: center; margin-bottom: 3rem;">
+<h2>Profit Distribution &amp; Protocol Sustenance</h2>
+<p>A completely transparent, on-chain execution framework protecting principal while maximizing yield.</p>
+</div>
+<div class="yield-engine-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+<!-- CSS Donut Chart Component -->
+<div class="glass-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+<h3 style="margin-bottom: 1.5rem;">Daily Reward Allocation</h3>
+<div class="donut-chart-container">
+<div class="donut-chart">
+<div class="donut-inner">
+<span class="value ticker-value" data-target="42%">42%</span>
+<span class="label">Distribution</span>
+</div>
+</div>
+</div>
+<p style="color: var(--text-secondary); max-width: 300px; margin: 1rem auto 0; font-size: 0.9rem;">
+                    42% of generated protocol yield is distributed daily amongst active node operators.
+                </p>
+</div>
+<!-- APY Stat Callout -->
+<div class="glass-card bento-item" style="display: flex; flex-direction: column; justify-content: center;">
+<h3 style="margin-bottom: 1rem; color: var(--gold);">Compounding Velocity</h3>
+<div style="margin-bottom: 2rem;">
+<span class="ticker-value" data-target="365+" style="font-size: 4rem; font-weight: 800; line-height: 1; color: var(--text-main);">365+</span>
+<span style="font-size: 2rem; font-weight: 700; color: var(--gold);">% APY</span>
+</div>
+<p style="color: var(--text-secondary); line-height: 1.6;">
+                    By intelligently deploying collateral across Venus Protocol and executing high-frequency orbital strategies, active users achieve exponential APY potential through daily autocompounding mechanics and the dual yield engine.
+                </p>
+<div class="feature-pill" style="margin-top: 1.5rem; display: inline-block; background: rgba(0, 212, 255, 0.1); color: var(--accent-secondary); padding: 0.5rem 1rem; border-radius: 100px; font-weight: 600; font-size: 0.85rem;">
+                    Dual Yield Execution Engine Active
+                </div>
+</div>
+</div>
+</div>
+</section>
+<section class="the-math-section section-padding" id="math" style="; position: relative; overflow: hidden;">
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="; position: relative; z-index: 1;">
+<div class="section-header">
+<div style="margin-bottom: 2rem; display: flex; justify-content: center;">
+</div>
+<h2>The Math: 8-5-2 Referral System</h2>
+<p>Our three-tier structure ensures your community growth translates into daily compounding
+                            rewards.</p>
+</div><blockquote class="pull-quote">
+<p>"It's like the system is giving you a pay raise every single day."</p>
+<cite>— AIDAv2 Ecosystem Overview</cite>
+</blockquote>
+<div class="bento-stacked">
+<div class="bento-item glass-card image-card">
+</div>
+<div class="bento-item glass-card stats-card">
+<div class="stat-tier">
+<span class="stat-percent">8%</span>
+<span class="stat-label">Direct Referrals (Level 1)</span>
+</div>
+<div class="stat-horizontal-divider"></div>
+<div class="stat-tier">
+<span class="stat-percent">5%</span>
+<span class="stat-label">Secondary Network (Level 2)</span>
+</div>
+<div class="stat-horizontal-divider"></div>
+<div class="stat-tier">
+<span class="stat-percent">2%</span>
+<span class="stat-label">Extended Network (Level 3)</span>
+</div>
+<div class="stat-horizontal-divider"></div>
+<!-- Part 2 Tagline -->
+<div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+<a class="glass-button" href="#app-onboarding" style="background: var(--accent-color); border: none; text-decoration: none;">Start
+                                    Earning Daily</a>
+<a class="glass-button" href="#architecture" style="text-decoration: none;">Protocol
+                                    Details</a>
+</div>
+</div><blockquote class="pull-quote">
+<p>"Whereas most technologies tend to automate workers on the periphery doing menial tasks, blockchains automate away the center."</p>
+<cite>— Vitalik Buterin</cite>
+</blockquote>
+</div>
+<div class="injected-image-display" style="margin: 3rem auto; text-align: center; max-width: 900px;"></div></div>
+</section>
+<section class="architecture-section section-padding" id="architecture">
+<div class="container">
+<!-- Intro Card -->
+<div class="bento-item glass-card" style="text-align: center; margin-bottom: 4rem; padding: 4rem 2rem;">
+<h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1rem; color: #fff;">Yield Is No
+                            Longer
+                            Opportunistic — It Becomes Systematic</h2>
+<div class="yield-engine-grid">
+<div class="glass-card" style="padding: 2.5rem; text-align: left; background: rgba(255,255,255,0.02);">
+<div style="font-size: 2rem; margin-bottom: 1rem;">🏗️</div>
+<h3 style="color: #fff; margin-bottom: 1rem;">DEX Yield Engine</h3>
+<p style="color: var(--text-muted); font-size: 0.95rem;">Capital deployed into
+                                    AI-optimized
+                                    liquidity pools evaluating: liquidity depth, volatility regimes, slippage dynamics,
+                                    pool
+                                    efficiency, and risk-adjusted return potential.</p>
+</div>
+<div class="glass-card" style="padding: 2.5rem; text-align: left; background: rgba(255,255,255,0.02);">
+<div style="font-size: 2rem; margin-bottom: 1rem;">⚙️</div>
+<h3 style="color: #fff; margin-bottom: 1rem;">Protocol Yield Engine</h3>
+<p style="color: var(--text-muted); font-size: 0.95rem;">Structured staking and
+                                    ecosystem
+                                    incentive participation governed by smart contract automation, data-informed
+                                    allocation
+                                    thresholds, and risk-weighted participation logic.</p>
+</div>
+</div>
+<div style="margin-top: 2rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+<p style="color: var(--text-muted); margin-bottom: 1rem;">Human emotion and manual timing
+                                are
+                                removed from the loop. Capital is no longer statically parked — it is continuously
+                                reallocated
+                                based on real-time intelligence from AID.Data.</p>
+<p style="color: var(--gold); font-weight: 600;">Non-leveraged capital structures only. No
+                                flash-loan exposure. No single-source farming risk.</p>
+</div>
+</div><blockquote class="pull-quote">
+<p>"The tokenization of asset classes offers the prospect of driving efficiencies in capital markets."</p>
+<cite>— Larry Fink</cite>
+</blockquote>
+<div class="section-header" style="margin-bottom: 3rem;">
+<h2>Our Core Deployment Principles</h2>
+</div><div class="services-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;"><div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column;">
+<h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.25rem;">Principal Isolation Architecture
+                        </h3>
+<p style="color: var(--text-muted);">Most yield platforms commingle principal and yield — creating liquidation risk during drawdowns. AIDAv2 separates them by design. In
+                            our
+                            recommended node structures, your principal is never included in any reward allocation. 100%
+                            of
+                            generated yield comes strictly from platform net profits.</p>
+</div><div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column;">
+<h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.25rem;">On-Chain Transparency</h3>
+<p style="color: var(--text-muted);">Black boxes fail. Every fund pool, interaction contract,
+                            and
+                            revenue source mapped out in our 8-5-2 Yield Calculator can be actively tracked and verified
+                            on-chain in real-time.</p>
+</div></div><div class="glass-card" style="padding: 2.5rem; display: flex; flex-direction: column;; max-width: 800px; margin: 0 auto 4rem auto; text-align: center;">
+
+<h2 style="font-size: 2rem; margin-bottom: 1rem; color: #fff; width: 100%;; text-align: center;">The Math is the Map
+                        </h2>
+<p style="color: var(--text-muted); max-width: 800px; margin: 0 auto 1.5rem auto; text-align: center;">
+                            We built this hub to give you the exact structural blueprints required to reach A-Node and
+                            3S-Node
+                            status. By utilizing the specific invite parameters provided, you are instantly plugged into
+                            an
+                            optimized, compounding community network designed for accelerated doubling times.</p>
+<p style="color: var(--gold); font-weight: 600; font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; text-align: center;">
+                            Follow the math. Deploy intelligently.</p>
+</div>
+<blockquote class="pull-quote">
+<p>"Execution logic, order matching, and settlement authority remain fully encapsulated within the execution layer itself."</p>
+<cite>— AIDAv2 Technical Architecture</cite>
+</blockquote>
+<!-- Quote 3 -->
+<!-- The Math is the Map Card -->
+</div>
+</section>
+<div style="margin-bottom: 3rem; text-align: center;"></div><div class="node-tier-container"><div class="full-node-tier-table" style="margin-top: 4rem; width: 100%; max-width: 1000px; margin-left: auto; margin-right: auto;">
+<div class="section-header" style="text-align: left;">
+<h3 style="color: #fff; margin-bottom: 1rem; font-size:1.8rem; text-align: center;">Full Node Tier
+                        Structure</h3>
+</div>
+<div class="glass-card" style="padding: 2.5rem; overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 600px; text-align: left;">
+<thead>
+<tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
+<th style="padding: 1rem; color: var(--gold);">Node Level</th>
+<th style="padding: 1rem; color: #fff;">Personal Assets</th>
+<th style="padding: 1rem; color: #fff;">Community Assets</th>
+<th style="padding: 1rem; color: #10B981;"><span class="tooltip-term">Computing Power Reward<span class="tooltip-text">Your share of daily protocol profits, determined by your node tier and community network size.</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">D-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">500 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">500 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">5%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">C-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">1,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">3,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">20%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">B-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">1,500 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">10,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">35%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">A-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">3,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">50,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">50%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">S-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">5,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">150,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">65%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">SS-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">10,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">500,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">80%</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700; color: #fff;">SSS-Level</td>
+<td style="padding: 1rem; color: var(--text-muted);">20,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">2,000,000 USDT</td>
+<td style="padding: 1rem; color: #10B981; font-weight: 700;">100%</td>
+</tr>
+<tr>
+<td style="padding: 1rem; font-weight: 700; color: var(--gold);">Partner</td>
+<td style="padding: 1rem; color: var(--text-muted);">50,000 USDT</td>
+<td style="padding: 1rem; color: var(--text-muted);">5,000,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold); font-weight: 700;">100% + Bonus</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="color: var(--gold); font-size: 0.95rem; margin-top: 1rem; font-weight: 500; text-align: center;">
+                    New users receive 5 days of free full Computing Power acceleration. Minimum entry: 100 USDT.</p>
+</div>
+<!-- YIELD CALCULATOR COMPONENT -->
+<section class="calculator-section" style="margin-top: 4rem; margin-bottom: 4rem;">
+<div class="glass-card" style="padding: 2.5rem; max-width: 800px; margin: 0 auto; background: #13151A; border: 1px solid rgba(123, 97, 255, 0.2);">
+<div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+<h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.8rem;">Yield Projection Calculator</h3>
+<p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0;">Projections based on current network performance. Not financial advice.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+<div>
+<label style="display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Capital to deploy (USDT)</label>
+<input id="calc-capital" max="50000" min="100" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" onfocus="this.style.borderColor='#7B61FF'" oninput="calculateYield()" style="width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.85rem; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s;" type="number" value="1000"/>
+</div>
+<div>
+<label style="display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Monthly return rate</label>
+<select id="calc-rate" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" onchange="calculateYield()" onfocus="this.style.borderColor='#7B61FF'" style="width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.85rem; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s; cursor: pointer;">
+<option style="background:#13151A; color:#fff;" value="0.13">Conservative (13%)</option>
+<option selected="" style="background:#13151A; color:#fff;" value="0.15">Expected (15%)</option>
+<option style="background:#13151A; color:#fff;" value="0.20">Optimistic (20%)</option>
+</select>
+</div>
+<div>
+<label style="display: block; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">Time horizon</label>
+<select id="calc-months" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" onchange="calculateYield()" onfocus="this.style.borderColor='#7B61FF'" style="width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.85rem; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s; cursor: pointer;">
+<option style="background:#13151A; color:#fff;" value="3">3 months</option>
+<option style="background:#13151A; color:#fff;" value="6">6 months</option>
+<option selected="" style="background:#13151A; color:#fff;" value="12">12 months</option>
+<option style="background:#13151A; color:#fff;" value="24">24 months</option>
+</select>
+</div>
+</div>
+<div style="background: rgba(123, 97, 255, 0.05); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; text-align: center;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem;">
+<div>
+<div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing:0.05em;">Estimated Tier</div>
+<div id="out-tier" style="color: #fff; font-size: 1.4rem; font-weight: 700;">C-Node</div>
+</div>
+<div>
+<div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing:0.05em;">Daily Yield</div>
+<div id="out-daily" style="color: #7B61FF; font-size: 1.4rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif;">$5.00</div>
+</div>
+<div>
+<div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing:0.05em;">Monthly Yield</div>
+<div id="out-monthly" style="color: #7B61FF; font-size: 1.4rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif;">$150.00</div>
+</div>
+<div>
+<div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing:0.05em;">Total Profit</div>
+<div id="out-profit" style="color: #7B61FF; font-size: 1.4rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif;">$4,350.27</div>
+</div>
+</div>
+<div style="margin-top: 1.5rem; border-top: 1px solid rgba(123,97,255,0.2); padding-top: 1.5rem;">
+<div style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing:0.05em;">Total Value at End of Period</div>
+<div id="out-total" style="color: #7B61FF; font-size: 2.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif;">$5,350.27</div>
+</div>
+</div>
+<div style="text-align: center;">
+<button class="cta-button glass-button" onclick="setTimeout(function(){ document.getElementById('tab-getstarted').scrollIntoView(); }, 100);" onmouseout="this.style.transform='translateY(0)'" onmouseover="this.style.transform='translateY(-2px)'" style="background: #7B61FF; color: #fff; border: none; padding: 1rem 2rem; font-size: 1.1rem; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 15px rgba(123,97,255,0.3); transition: transform 0.2s; font-weight: 600;">Activate at This Tier →</button>
+</div>
+</div>
+</section>
+<script>
+    function formatCurrency(num) {
+        return '$' + parseFloat(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function calculateYield() {
+        let capital = parseFloat(document.getElementById('calc-capital').value) || 0;
+        let rate = parseFloat(document.getElementById('calc-rate').value) || 0;
+        let months = parseInt(document.getElementById('calc-months').value) || 0;
+        
+        // Exact maths requested:
+        let daily = capital * (rate / 30);
+        let monthly = capital * rate;
+        let total = capital * Math.pow(1 + rate, months);
+        let profit = total - capital;
+        
+        // Tier auto-detection:
+        let tier = "Trainee / < D-Node";
+        if(capital >= 50000) tier = "Partner";
+        else if(capital >= 20000) tier = "SSS-Node";
+        else if(capital >= 10000) tier = "SS-Node";
+        else if(capital >= 5000) tier = "S-Node";
+        else if(capital >= 3000) tier = "A-Node";
+        else if(capital >= 1500) tier = "B-Node";
+        else if(capital >= 1000) tier = "C-Node";
+        else if(capital >= 100) tier = "D-Node";
+        
+        document.getElementById('out-tier').innerText = tier;
+        document.getElementById('out-daily').innerText = formatCurrency(daily);
+        document.getElementById('out-monthly').innerText = formatCurrency(monthly);
+        document.getElementById('out-profit').innerText = formatCurrency(profit);
+        document.getElementById('out-total').innerText = formatCurrency(total);
+    }
+    
+    // Auto-calculate on load
+    if(document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', calculateYield);
+    } else {
+        calculateYield();
+    }
+</script>
+<!-- /YIELD CALCULATOR COMPONENT -->
+<blockquote class="pull-quote">
+<p>"Bitcoin is a tool for freeing humanity from oligarchs and tyrants, dressed up as a get-rich-quick scheme."</p>
+<cite>— Naval Ravikant</cite>
+</blockquote></div>
+<section class="tokenomics-section section-padding" style="background: rgba(255,255,255,0.02);">
+<div class="container">
+<div class="section-header">
+<h2>AID: The Fuel of Intelligent Finance</h2>
+<p>Not a passive asset, but a working instrument for autonomous execution.</p>
+</div><blockquote class="pull-quote">
+<p>"Value accrues from real system throughput rather than emissions. Token demand shifts from incentive-driven usage to execution-driven necessity."</p>
+<cite>— AIDAv2 Tokenomics Documentation</cite>
+</blockquote>
+<!-- Utility Pillars -->
+<div class="services-grid" style="margin-bottom: 4rem;">
+<div class="service-card">
+<div style="font-size: 2rem; margin-bottom: 1rem;">🔓</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">Access &amp; Privilege</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Unlock AI analytics tiers and
+                                professional-grade tools.</p>
+</div>
+<div class="service-card">
+<div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">Execution Utility</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Power strategy execution and
+                                AI-assisted
+                                workflows.</p>
+</div>
+<div class="service-card">
+<div style="font-size: 2rem; margin-bottom: 1rem;">🗳️</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">Governance</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Participate in proposals and
+                                parameter
+                                tuning.</p>
+</div>
+<div class="service-card">
+<div style="font-size: 2rem; margin-bottom: 1rem;">🎁</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">Incentives</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Earn rewards across DeFi, SocialFi,
+                                and
+                                GameFi.</p>
+</div>
+<div class="service-card">
+<div style="font-size: 2rem; margin-bottom: 1rem;">💳</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">Settlement Bridge</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Flow into AIDPay for spending in
+                                180+
+                                countries.</p>
+</div>
+</div>
+<!-- Distribution Table -->
+<div class="glass-card" style="padding: 2.5rem; max-width: 900px; margin: 0 auto;">
+<h3 style="color: #fff; margin-bottom: 2rem; text-align: center;">Token Allocation</h3>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+<thead>
+<tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
+<th style="padding: 1rem; text-align: left; color: var(--gold);">Category</th>
+<th style="padding: 1rem; text-align: left;">Allocation</th>
+<th style="padding: 1rem; text-align: left;">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">User Incentives</td>
+<td style="padding: 1rem;">50%</td>
+<td style="padding: 1rem;">50,000,000 AID</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">Data &amp; AI Infrastructure</td>
+<td style="padding: 1rem;">15%</td>
+<td style="padding: 1rem;">15,000,000 AID</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">VC / Angel Investors</td>
+<td style="padding: 1rem;">10%</td>
+<td style="padding: 1rem;">10,000,000 AID</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">Operations</td>
+<td style="padding: 1rem;">10%</td>
+<td style="padding: 1rem;">10,000,000 AID</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">Team &amp; Founders</td>
+<td style="padding: 1rem;">5%</td>
+<td style="padding: 1rem;">5,000,000 AID</td>
+</tr>
+<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+<td style="padding: 1rem; font-weight: 700;">Reserve</td>
+<td style="padding: 1rem;">5%</td>
+<td style="padding: 1rem;">5,000,000 AID</td>
+</tr>
+<tr>
+<td style="padding: 1rem; font-weight: 700;">Protocol Reserve</td>
+<td style="padding: 1rem;">5%</td>
+<td style="padding: 1rem;">5,000,000 AID</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center; border: 1px solid rgba(16, 185, 129, 0.2);">
+<p style="color: #10B981; font-weight: 700; margin: 0;">Total Supply: 100,000,000 AID</p>
+<p style="font-size: 0.85rem; color: #fff; margin-top: 0.5rem;">50% of all AID tokens are
+                                allocated
+                                directly to platform users — one of the most community-forward distributions in DeFi.
+                            </p>
+</div>
+</div>
+<!-- Part B Pull Quote -->
+</div>
+</section>
+<div class="section-padding">
+<div class="container"></div>
+</div>
+</div>
+<div class="tab-content" id="tab-security">
+<div class="section-padding" style="; position: relative; overflow: hidden;">
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="; position: relative; z-index: 1;"><div class="bento-item glass-card">
+<h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.5rem;">Institutional-Grade Security
+                        </h3>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">We do not deploy capital into
+                            unvetted
+                            environments. The underlying architecture operates under strict, continuous auditing by
+                            industry
+                            leaders. For complete technical documentation, review the official AIDAv2 <a href="https://aid-1.gitbook.io/aid" style="color: var(--gold); text-decoration: none; border-bottom: 1px dashed var(--gold);" target="_blank">whitepaper</a>.
+                        </p>
+<div class="audit-triple-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+<!-- Card 1 — CertiK -->
+<div class="glass-card audit-badge-card" style="background: rgba(255,255,255,0.03); border-color: #f59e0b;">
+<div class="badge-header">
+<span style="font-size: 1.5rem;">🛡️</span>
+<h3>CertiK Audit</h3>
+</div>
+<div class="badge-content">
+<p style="color: #fff; font-weight: 700; margin-bottom: 0.5rem;">BBB Security Rating
+                                    </p>
+<span class="badge-note" style="display: block; margin-bottom: 1rem;">Live Real-Time
+                                        Skynet
+                                        Dashboard</span>
+<a class="feature-pill" href="https://skynet.certik.com/projects/aidav2" style="text-decoration: none; color: var(--gold); border: 1px solid var(--gold);" target="_blank">View
+                                        Live Security Score →</a>
+</div>
+</div>
+<!-- Card 2 — Beosin -->
+<div class="glass-card audit-badge-card" style="background: rgba(255,255,255,0.03);">
+<div class="badge-header">
+<span style="font-size: 1.5rem;">🛡️</span>
+<h3>Beosin Audit</h3>
+</div>
+<div class="badge-content">
+<p style="color: #fff; font-weight: 700; margin-bottom: 0.5rem;">$500B+ Assets
+                                        Secured</p>
+<span class="badge-note" style="display: block; margin-bottom: 0.25rem;">Report:
+                                        202408301054 | Aug 30, 2024</span>
+<span class="badge-note" style="display: block; margin-bottom: 1rem; color: #10B981;">Result: No critical
+                                        vulnerabilities identified</span>
+<a class="feature-pill" href="https://beosin.com/audits/AIDAv2_202408301054.pdf" style="text-decoration: none; color: var(--gold); border: 1px solid var(--gold);" target="_blank">Download
+                                        Report →</a>
+</div>
+</div>
+<!-- Card 3 — AVE.ai -->
+<div class="glass-card audit-badge-card" style="background: rgba(255,255,255,0.03);">
+<div class="badge-header">
+<span style="font-size: 1.5rem;">🛡️</span>
+<h3>AVE.ai Analysis</h3>
+</div>
+<div class="badge-content">
+<p style="color: #fff; font-weight: 700; margin-bottom: 0.5rem;">Independent Token
+                                        Analysis
+                                    </p>
+<span class="badge-note" style="display: block; margin-bottom: 1rem;">BSC Contract
+                                        Verified</span>
+<a class="feature-pill" href="https://ave.ai/token/0xaa9f209c295437c31bde75eee1aa8453f2acabcd-bsc?from=Home" style="text-decoration: none; color: var(--gold); border: 1px solid var(--gold);" target="_blank">View
+                                        Analysis →</a>
+</div>
+</div>
+<!-- Card 4 — Legal Entity (Part K) -->
+<div class="glass-card audit-badge-card" style="background: rgba(255,255,255,0.03); border-color: var(--gold);">
+<div class="badge-header">
+<span style="font-size: 1.5rem;">🏢</span>
+<h3>Registered &amp; Verified</h3>
+</div>
+<div class="badge-content">
+<p style="color: #fff; font-weight: 700; margin-bottom: 0.5rem;">AIDAV2 Ltd</p>
+<span class="badge-note" style="display: block; margin-bottom: 0.25rem;">Registration No.
+                                        20241955038</span>
+<span class="badge-note" style="display: block; margin-bottom: 0.25rem;">Founded:
+                                        Sept 11,
+                                        2024</span>
+<span class="badge-note" style="display: block;">Legal Rep: Jason Scott
+                                        Runyon</span>
+</div>
+</div>
+</div>
+<!-- Part G: DoraHacks Badge -->
+<div class="glass-card" style="margin-top: 1.5rem; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; background: rgba(255,255,255,0.02); border-color: #6366f1;">
+<div style="font-size: 2.5rem;">🏆</div>
+<div>
+<h4 style="color: #fff; margin-bottom: 0.25rem;">EMC x DoraHacks DeAI Hackathon — 2nd
+                                    Place</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Co-hosted by Edge
+                                    Matrix
+                                    Computing &amp; DoraHacks (world's largest Web3 developer community).</p>
+</div>
+</div>
+<p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                            All smart contract logic, access control structures, reentrancy vulnerabilities, flash-loan
+                            attack
+                            surfaces, and gas efficiency pathways independently verified.
+                        </p>
+<!-- Part 14: Social Proof Bar for Telegram (Part K Update) -->
+<div class="telegram-proof glass-card" style="margin-bottom: 3rem; background: rgba(0, 136, 204, 0.1); border-color: rgba(0, 136, 204, 0.3); border-radius: 50px;">
+<div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2.5rem;">
+<div style="display: flex; align-items: center; gap: 1rem;">
+<p style="margin: 0; color: #fff; font-weight: 500;">Join the community: <strong style="color: #0088cc;">@AIDAv2official</strong><span style="color: #10B981;">on Telegram  Official
+                                        AIDAv2
+                                        announcements &amp; ecosystem updates</span></p>
+</div>
+<a class="feature-pill" href="https://t.me/AIDAv2official" style="background: #0088cc; color: #fff; border: none; font-weight: 700;" target="_blank">Join on Telegram
+                                    →</a>
+</div>
+</div>
+<!-- Part 4: Trustless Proof & AI Checklist -->
+<div class="glass-card glowing-panel" style="padding: 3rem; margin-bottom: 4rem; border-color: #ef4444;">
+<div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem;">
+<div>
+<div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+<span style="font-size: 2rem;">🔐</span>
+<h3 style="color: #ef4444; font-size: 1.8rem; margin: 0;">The Developer Keys Are
+                                            Gone —
+                                            Forever</h3>
+</div>
+<p style="font-size: 1.1rem; color: #fff; line-height: 1.6; font-style: italic; margin-bottom: 2rem;">
+                                        "The administrative address on the BSC block explorer reads all zeros. The
+                                        development
+                                        team has permanently surrendered control of the smart contracts. No one —
+                                        including the
+                                        founders — can access your funds or alter the protocol."
+                                    </p>
+</div>
+<div>
+<h4 style="color: #fff; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.9rem;">
+                                        AI Safety Guarantee</h4>
+<ul class="safety-checklist">
+<li class="checklist-item completed">AI components do not custody user assets</li>
+<li class="checklist-item completed">AI components do not autonomously place or match
+                                            orders</li>
+<li class="checklist-item completed">AI components do not override execution-layer rules</li>
+<li class="checklist-item completed">Time-locks prevent sudden unauthorized contract
+                                            changes</li>
+<li class="checklist-item completed">Risk intelligence remains transparent and auditable</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="bento-item glass-card">
+<h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.5rem;">Frictionless Liquidity</h3>
+<p style="color: #E2E8F0; font-size: 1.05rem; line-height: 1.8;">Your assets remain your assets. There are zero lock-up
+                                periods,
+                                giving you complete, immediate control over your principal and compounding profits.</p>
+</div>
+<!-- Mid-Page Invite Code -->
+</div>
+<div class="trust-bar-section">
+<div class="container trust-bar glass-card">
+<div class="trust-item">
+<svg class="trust-icon" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Audited &amp; Secured by <strong>BEOSIN</strong> Blockchain Security</span>
+</div>
+<div class="trust-divider"></div>
+<div class="trust-item">
+<svg class="trust-icon" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7M15 16h6M18 13v6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span><strong>100%</strong> On-Chain Transparency</span>
+</div>
+</div>
+</div>
+<div style="margin-top: 4rem;">
+</div>
+<div class="social-proof-container" style="margin-top: 4rem;"><div class="social-bar">
+<div style="display: flex; align-items: center;">
+<span class="platform-icon">✈️</span>
+<div>
+<strong style="color: #fff; font-size: 15px; display: block;">Official Telegram Community</strong>
+<span class="text-muted" style="font-size: 13px;">Real-time strategy updates &amp; active node operators.</span>
+</div>
+</div>
+<a class="cta-link" href="https://t.me/AIDA_Official_EN" target="_blank">Join Community</a>
+</div><div class="social-bar">
+<div style="display: flex; align-items: center;">
+<span class="platform-icon">𝕏</span>
+<div>
+<strong style="color: #fff; font-size: 15px; display: block;">Official X (Twitter)</strong>
+<span class="text-muted" style="font-size: 13px;">Protocol announcements &amp; ecosystem growth.</span>
+</div>
+</div>
+<a class="cta-link" href="https://x.com/AIDAv2_official" target="_blank">Follow @AIDAv2_official</a>
+</div></div></div>
+</div>
+</div>
+<div class="tab-content" id="tab-ecosystem"><section class="credibility-section section-padding" id="credibility" style="background: rgba(0,0,0,0.2);">
+<div class="container">
+<div class="section-header">
+<h2>Live From the AID Ecosystem</h2>
+<p>Verified milestones and updates direct from official AIDAv2 channels.</p>
+</div><blockquote class="pull-quote">
+<p>"We have elected to put our money and faith in a mathematical framework that is free of politics and human error."</p>
+<cite>— Tyler Winklevoss</cite>
+</blockquote>
+<!-- Milestone Cards -->
+<div class="milestone-grid" style="margin-bottom: 4rem;">
+<div class="glass-card milestone-card">
+<div class="milestone-icon">🏛️</div>
+<h3>Consensus Hong Kong 2026</h3>
+<p>AID represented at Asia's premier Web3 conference alongside Binance, TRON, Solana
+                                Foundation, and
+                                McKinsey.</p>
+<a class="milestone-link" href="https://medium.com/@AIDAv2/from-stage-to-ecosystem-aids-ai-defi-momentum-at-consensus-hong-kong-2026-b27c65cdecd5" target="_blank">Read More →</a>
+</div>
+<div class="glass-card milestone-card">
+<div class="milestone-icon">📈</div>
+<h3>Listed on CMC &amp; CoinGecko</h3>
+<p>AID secured listings on the world's two largest crypto data aggregators, achieving
+                                +64.71% weekly
+                                growth at launch.</p>
+<a class="milestone-link" href="https://medium.com/@AIDAv2/aid-weekly-update-major-listings-global-events-and-ai-driven-defi-growth-259f5b277267" target="_blank">Read More →</a>
+</div>
+<div class="glass-card milestone-card">
+<div class="milestone-icon">🔐</div>
+<h3>BEOSIN Security Audit — Passed</h3>
+<p>Smart contracts independently audited and certified by BEOSIN Blockchain Security,
+                                enterprise-grade Web3 security firm.</p>
+<a class="milestone-link" href="https://aidav2.com" target="_blank">Read More →</a>
+</div>
+</div>
+<!-- Medium Feed Strip -->
+<div class="medium-feed-container">
+<div class="feed-header">
+<h4>Latest from Medium</h4>
+<span class="feed-badge">Real-Time Insights</span>
+</div>
+<div class="medium-feed-strip">
+<a class="medium-card" href="https://medium.com/@AIDAv2/aid-smarter-systems-safer-outcomes-8ca618e986cc" target="_blank">
+<span class="medium-date">March 5, 2026</span>
+<h3>AID: Smarter Systems, Safer Outcomes</h3>
+<span class="medium-label">Read on Medium →</span>
+</a>
+<a class="medium-card" href="https://medium.com/@AIDAv2/aid-weekly-update-march-2-2026-1e440891a47e" target="_blank">
+<span class="medium-date">March 2, 2026</span>
+<h3>AID Weekly Update — Expanding Global Influence</h3>
+<span class="medium-label">Read on Medium →</span>
+</a>
+<a class="medium-card" href="https://medium.com/@AIDAv2" target="_blank">
+<span class="medium-date">March 2, 2026</span>
+<h3>AID: Smart Protection for Smarter Growth</h3>
+<span class="medium-label">Read on Medium →</span>
+</a>
+</div>
+</div>
+<!-- X Social Proof Bar -->
+<div class="x-proof-bar">
+<div class="x-content">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+</path>
+</svg>
+<span>Follow live updates: <strong>@AIDAv2_official</strong> on X</span>
+<span class="x-stat">| 29K+ views on latest post</span>
+</div>
+<a class="x-btn" href="https://x.com/AIDAv2_official" target="_blank">Connect on X →</a>
+</div>
+<!-- Telegram Social Proof Bar -->
+<div class="x-proof-bar" style="margin-top: 1rem; border-color: rgba(36,161,222,0.3);">
+<div class="x-content">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M11.944 0C5.344 0 0 5.344 0 11.944c0 6.6 5.344 11.944 11.944 11.944 6.6 0 11.944-5.344 11.944-11.944C23.888 5.344 18.544 0 11.944 0zm5.836 8.163l-1.957 9.228c-.147.653-.532.812-1.076.51l-2.982-2.193-1.439 1.385c-.159.159-.293.293-.601.293l.214-3.036 5.525-4.991c.24-.213-.053-.332-.372-.119L8.21 13.57 5.27 12.65c-.639-.2-.652-.64.133-.947l11.492-4.43c.532-.192.997.125.885.89z">
+</path>
+</svg>
+<span>Join the community: <strong>@AIDAv2official</strong> on Telegram</span>
+<span class="x-stat">| Official AIDAv2 announcements &amp; ecosystem updates</span>
+</div>
+<a class="x-btn" href="https://t.me/AIDAv2official" style="background: #24A1DE; color: #fff; border: none;" target="_blank">Join on Telegram
+                            →</a>
+</div>
+</div>
+</section>
+<section class="engine-section section-padding" id="engine">
+<div class="container">
+<div class="bento-item glass-card" style="padding: 4rem 3rem;">
+<div class="section-header" style="margin-bottom: 2.5rem; text-align: center;">
+<h2 style="font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1rem; color: #fff;">The AID Super
+                        Engine: A Full-Stack AI Financial Operating System</h2>
+</div>
+<div class="engine-content" style="font-size: 1.15rem; color: var(--text-muted); max-width: 900px; margin: 0 auto 3rem auto; text-align: center;">
+<p style="margin-bottom: 1.5rem;"><strong style="color: var(--text-main);">AIDAv2 is not a single
+                            product, trading platform, or yield protocol.</strong> It is a Super Engine of Intelligent
+                        Finance — a full-stack, AI-native financial operating system built on the principle of <span class="tooltip-term">DeFAI<span class="tooltip-text">Decentralised Finance powered by Artificial Intelligence — AIDAv2's term for AI-native autonomous yield execution.</span></span>:
+                        Decentralized Finance powered by Artificial Intelligence.</p>
+<p style="margin-bottom: 1.5rem;">The system transforms raw blockchain data into autonomous
+                        financial intelligence through four interoperable layers: <strong>AID.Data</strong> sees and
+                        analyzes everything. <strong>AID.DeFi</strong> generates systematic yield.
+                        <strong>AID.EX</strong> executes across chains. <strong>AID.SocialFi</strong> converts
+                        participation into value.
+                    </p>
+<p style="color: #fff; font-weight: 500; font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem;">
+                        Together they form a closed loop: Data becomes intelligence. Intelligence becomes execution.
+                        Execution becomes value.</p>
+</div>
+<!-- Pillar Diagram Diagram -->
+<div class="pillar-diagram">
+<div class="pillar-item">
+<div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+<h4 style="color: #fff; margin-bottom: 0.25rem;">AID.Data</h4>
+<span style="font-size: 0.8rem; color: var(--gold);">(Sees)</span>
+</div>
+<div class="pillar-item">
+<div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💰</div>
+<h4 style="color: #fff; margin-bottom: 0.25rem;">AID.DeFi</h4>
+<span style="font-size: 0.8rem; color: var(--gold);">(Yields)</span>
+</div>
+<div class="pillar-item">
+<div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔄</div>
+<h4 style="color: #fff; margin-bottom: 0.25rem;">AID.EX</h4>
+<span style="font-size: 0.8rem; color: var(--gold);">(Executes)</span>
+</div>
+<div class="pillar-item">
+<div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📱</div>
+<h4 style="color: #fff; margin-bottom: 0.25rem;">AID.SocialFi</h4>
+<span style="font-size: 0.8rem; color: var(--gold);">(Connects)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="ecosystem-services-section section-padding" style="background: rgba(0,0,0,0.2);">
+<div class="container">
+<!-- Part 8: Full Ecosystem Services Grid -->
+<div class="section-header" style="margin-top: 6rem;">
+<h2>The Complete AID Ecosystem</h2>
+<p>Your node isn't just a yield position — it's your access key to a complete on-chain financial
+                    ecosystem.</p>
+</div>
+<div class="services-grid">
+<!-- Live Now -->
+<div class="service-card">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">📊</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID.Data</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">AI data intelligence, 500-600TB daily</p>
+<span class="feature-pill">LIVE NOW ✅</span>
+</div>
+<div class="service-card">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">🦅</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;"><span class="tooltip-term">Eagle Eye<span class="tooltip-text">AIDAv2's on-chain risk surveillance layer — monitors anomalies and feeds risk signals to the execution engine in real time.</span></span></h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">On-chain risk surveillance</p>
+<span class="feature-pill">LIVE NOW ✅</span>
+</div>
+<div class="service-card">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">💰</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID.DeFi</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Dual Yield Engine</p>
+<span class="feature-pill">LIVE NOW ✅</span>
+</div>
+<div class="service-card">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">🔄</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID.EX</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted);">Cross-chain DEX &amp; execution</p>
+<span class="feature-pill">LIVE NOW ✅</span>
+</div>
+<!-- Part H: AID.SocialFi Update -->
+<div class="service-card" style="border-color: rgba(99, 102, 241, 0.3);">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">📱</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID.SocialFi</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Web3 super-app,
+                        chat, rooms</p>
+<ul style="font-size: 0.75rem; color: var(--text-muted); list-style: none; padding: 0; margin-bottom: 1rem;">
+<li>• Encrypted wallet-bound messaging</li>
+<li>• Censorship-resistant Meeting Rooms</li>
+<li>• P2P transfers inside chats</li>
+<li>• Crypto Gifts</li>
+<li>• LLM-powered AI interaction</li>
+<li>• AID BOT conversational assistant</li>
+<li style="margin-top:0.5rem;">• GameFi: Ninja-ja, Super Striker, Army Battle, Hungry Snake, Furious Racing, Puzzle</li>
+<li style="color: #10B981; margin-top: 0.5rem; font-weight: 600;">Accessible via the AIDAv2 mobile dApp</li>
+</ul>
+<div style="margin-bottom: 1rem;">
+<span class="feature-pill" style="background: #10B981; color: #000;">LIVE — Mobile dApp ✅</span>
+</div>
+<a class="glass-btn dynamic-dapp-link" href="#app-onboarding" style="text-decoration: none; display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; border-radius: 6px;">Initiate dApp deployment →</a>
+</div>
+<!-- Part H: AID Wallet card -->
+<div class="service-card" style="border-color: rgba(99, 102, 241, 0.3);">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">👛</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID Wallet</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Self-custody,
+                        Multi-chain</p>
+<ul style="font-size: 0.75rem; color: var(--text-muted); list-style: none; padding: 0; margin-bottom: 1rem;">
+<li>• Self-custody, no KYC, no VPN required</li>
+<li>• Multi-chain asset management</li>
+<li>• One-click staking, trading, AI services</li>
+<li>• Hardware wallet integration (coming)</li>
+<li>• Multi-signature accounts (coming)</li>
+<li>• Partners: OKX Wallet, Bitget Wallet, TokenPocket, OneKey</li>
+<li style="color: #10B981; margin-top: 0.5rem; font-weight: 600;">Accessible via the AIDAv2 mobile dApp</li>
+</ul>
+<div style="margin-bottom: 1rem;">
+<span class="feature-pill" style="background: #10B981; color: #000;">LIVE — Mobile dApp ✅</span>
+</div>
+<a class="glass-btn dynamic-dapp-link" href="#app-onboarding" style="text-decoration: none; display: inline-block; padding: 0.5rem 1rem; font-size: 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; border-radius: 6px;">Initiate dApp deployment →</a>
+</div>
+<div class="service-card" style="border-color: rgba(99, 102, 241, 0.3);">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">🤖</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AID BOT</h4>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">Conversational AI assistant</p>
+<ul style="font-size: 0.75rem; color: var(--text-muted); list-style: none; padding: 0; margin-bottom: 1rem; line-height: 1.5;">
+<li>• LLM-powered natural language understanding</li>
+<li>• Conversational strategy execution</li>
+<li>• Asset management through dialogue</li>
+<li>• Real-time data &amp; market requests</li>
+</ul>
+<div style="margin-bottom: 1rem;">
+<span class="feature-pill">IN DEVELOPMENT 🔄</span>
+</div>
+</div>
+<div class="service-card" style="border-color: rgba(228, 179, 99, 0.3);">
+<div style="font-size: 1.5rem; margin-bottom: 1rem;">💳</div>
+<h4 style="color: #fff; margin-bottom: 0.5rem;">AIDPay</h4>
+<ul style="font-size: 0.75rem; color: var(--text-muted); list-style: none; padding: 0; margin-bottom: 1rem;">
+<li>• Visa/Mastercard Global Support</li>
+<li>• Available in 180+ Countries</li>
+<li>• No KYC Required (True Privacy)</li>
+<li>• Global ATM Withdrawals</li>
+<li>• Top-up with AID &amp; Multi-Crypto</li>
+</ul>
+<div style="margin-bottom: 1rem;">
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="aidpay-section section-padding" style="background: rgba(255, 255, 255, 0.02);">
+<div class="container">
+<div class="section-header">
+<span class="feature-pill" style="background: var(--gold); color: #000; margin-bottom: 1rem;">LAUNCHED
+                    Q1 2026 ✅</span>
+<h2 style="color: #fff;">AIDPay: Real-World AI Consumption</h2>
+<p>On-chain intelligence → Autonomous execution → Real-world consumption</p>
+</div>
+<div class="glass-card reveal" style="padding: 3rem;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+<div>
+<img alt="AIDPay Visa and Mastercard Crypto Cards" src="images/AIDPay.jpg" style="width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"/>
+</div>
+<div>
+<h3 style="color: #fff; margin-bottom: 1.5rem;">Privacy-First Crypto Spending</h3>
+<ul class="safety-checklist" style="margin-bottom: 2.5rem;">
+<li class="checklist-item">✅ Visa Physical &amp; Mastercard Virtual Cards</li>
+<li class="checklist-item">✅ Available in 180+ Countries</li>
+<li class="checklist-item">✅ No KYC Required | True Privacy</li>
+<li class="checklist-item">✅ Global ATM Withdrawals</li>
+<li class="checklist-item">✅ Top-up with AID Token &amp; Multi-Crypto</li>
+<li class="checklist-item">✅ Manage Multiple Cards under One Account</li>
+</ul>
+<a class="cta-button glass-button" href="https://aid-1.gitbook.io/aid/four-core-ecosystems/aids-four-core-ecosystems/aid.socialfi-intelligent-social-infrastructure/aidpay-real-world-settlement-layer" style="text-decoration: none; display: inline-block;" target="_blank">View Official Whitepaper →</a>
+</div>
+</div>
+</div>
+</div>
+</section></div>
+<div class="tab-content" id="tab-team">
+<section class="team-section section-padding" id="team" style="position: relative; background: #0A0B0F;">
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="; position: relative; z-index: 1;">
+<div class="section-header">
+<h2>The Team Behind AID</h2>
+<p>The AID team has secured funding and technical support from venture capital firms, ensuring
+                            technological leadership and innovative capabilities.</p>
+</div>
+<div class="grid-3" style="">
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                CEO</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Jason Runyon</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
+<li class="checklist-item">30+ years professional experience</li>
+<li class="checklist-item">14+ years crypto industry</li>
+<li class="checklist-item">Launched 30+ blockchain projects</li>
+<li class="checklist-item">Led successful ICO campaigns and cross-chain scalability
+                                    initiatives</li>
+</ul>
+<p style="font-style: italic; color: var(--text-muted); font-size: 0.9rem;">"Leading AID's
+                                vision of cutting-edge AI-powered financial infrastructure."</p>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Head of Brand</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Mete Ali Başkaya</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">Web3 strategist, speaker &amp; writer</li>
+<li class="checklist-item">University Lecturer in Information Technologies</li>
+<li class="checklist-item">Active across LinkedIn, X, Instagram and industry
+                                    publications</li>
+<li class="checklist-item">Specializes in simplifying complex crypto and Web3 concepts
+                                </li>
+</ul>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Head of APAC Business Development</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Mark Henry Saft</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">AIDAv2's Asia-Pacific ambassador</li>
+<li class="checklist-item">Regional partnerships and forum representation</li>
+<li class="checklist-item">Driving Web3 thought leadership across APAC markets</li>
+</ul>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Head of Global Operations</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Blake Ke</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">5+ years Web3 project experience</li>
+<li class="checklist-item">Scaled operations to 50,000+ member community</li>
+<li class="checklist-item">Led cross-chain campaigns increasing engagement 80%</li>
+<li class="checklist-item">Built operational frameworks across Hong Kong and Incheon
+                                </li>
+</ul>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Head of Global Marketing</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Himanshu Verma</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">Keynote speaker at Token2049</li>
+<li class="checklist-item">Built global community of 50,000+ members</li>
+<li class="checklist-item">Specialist in translating blockchain complexity into
+                                    accessible human narratives</li>
+</ul>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Software Engineer</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Andrusio</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">University of Tartu — Information Technology</li>
+<li class="checklist-item">15+ years designing critical production systems</li>
+<li class="checklist-item">Previously at Kraken Exchange and Oracle</li>
+<li class="checklist-item">Expert in Rust, Blockchain Architecture, Distributed Systems
+                                </li>
+</ul>
+</div>
+<div class="glass-card team-card" style="">
+<div class="team-role" style="">
+                                Product Manager</div><h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Charendeepp</h3>
+<ul class="safety-checklist" style="font-size: 0.9rem;">
+<li class="checklist-item">IIT Kanpur — Electronics &amp; Communication Engineering</li>
+<li class="checklist-item">Managed $500,000+ crypto hedge fund achieving 32% return</li>
+<li class="checklist-item">Developed options arbitrage strategy with 40% annual return,
+                                    Sharpe ratio &gt;21, max drawdown 1.5%</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="tab-content" id="tab-getstarted">
+<div class="section-padding" id="app-onboarding">
+<div class="container" style="display:flex; flex-direction:column; align-items:center; gap: 2rem;">
+<div class="reveal" style="width: 100%; max-width: 900px; margin: 0 auto; margin-bottom: 2rem; padding: 2.5rem 0;">
+<h2 style="color: #fff; font-size: 2rem; margin-bottom: 1rem; text-align: center;">The Math: 8-5-2 Referral System</h2>
+<p style="color: #E2E8F0; font-size: 1.1rem; line-height: 1.6; text-align: center; margin-bottom: 3rem;">
+                                The node tier system is a community reward structure layered on top of base yield.
+                                Your earning potential scales with both your personal capital deployment and the community you build.
+                            </p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+<div class="bento-item glass-card" style="text-align: center; padding: 2rem;">
+<div style="font-size: 2rem; color: #10B981; font-weight: 700; margin-bottom: 0.5rem;">8%</div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Direct Referrals (L1)</h3>
+<p style="color: #9CA3AF; font-size: 0.9rem;">Contribution to your community volume</p>
+</div>
+<div class="bento-item glass-card" style="text-align: center; padding: 2rem;">
+<div style="font-size: 2rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem;">5%</div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Network Ext (L2)</h3>
+<p style="color: #9CA3AF; font-size: 0.9rem;">Contribution to your community volume</p>
+</div>
+<div class="bento-item glass-card" style="text-align: center; padding: 2rem;">
+<div style="font-size: 2rem; color: #6366f1; font-weight: 700; margin-bottom: 0.5rem;">2%</div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Extended Net (L3)</h3>
+<p style="color: #9CA3AF; font-size: 0.9rem;">Contribution to your community volume</p>
+</div>
+</div>
+<div class="glass-card reveal" style="overflow-x: auto; padding: 1.5rem 0;">
+<table style="width: 100%; border-collapse: collapse; text-align: left;">
+<thead>
+<tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<th style="padding: 1rem; color: #fff; font-weight: 600;">Node Level</th>
+<th style="padding: 1rem; color: #fff; font-weight: 600;">Personal Stake</th>
+<th style="padding: 1rem; color: #fff; font-weight: 600;">Community Stake</th>
+<th style="padding: 1rem; color: #fff; font-weight: 600;">Node Bonus</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">Entry</td>
+<td style="padding: 1rem; color: #10B981;">100 USDT min</td>
+<td style="padding: 1rem; color: #9CA3AF;">—</td>
+<td style="padding: 1rem; color: #9CA3AF;">Base yield only</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">D-Level</td>
+<td style="padding: 1rem; color: #10B981;">500 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">500 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">5%</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">C-Level</td>
+<td style="padding: 1rem; color: #10B981;">1,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">3,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">20%</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">B-Level</td>
+<td style="padding: 1rem; color: #10B981;">1,500 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">10,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">35%</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">A-Level</td>
+<td style="padding: 1rem; color: #10B981;">3,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">50,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">50%</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">S-Level</td>
+<td style="padding: 1rem; color: #10B981;">5,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">150,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">65%</td>
+</tr>
+<tr style="border-bottom: 1px dashed rgba(255, 255, 255, 0.05);">
+<td style="padding: 1rem; color: #E2E8F0;">SS-Level</td>
+<td style="padding: 1rem; color: #10B981;">10,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">500,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">80%</td>
+</tr>
+<tr>
+<td style="padding: 1rem; color: #E2E8F0;">SSS-Level</td>
+<td style="padding: 1rem; color: #10B981;">20,000 USDT</td>
+<td style="padding: 1rem; color: var(--gold);">2,000,000 USDT</td>
+<td style="padding: 1rem; color: #6366f1; font-weight: 600;">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="mid-page-invite" style="margin-top: 4rem; text-align: center;">
+<div class="glass-card" style="display: inline-flex; flex-direction: column; align-items: center; padding: 2rem 4rem; border-color: var(--gold);">
+<h4 style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.1em;">
+                                    READY TO DEPLOY? USE THIS ACCESS KEY:</h4>
+<div class="crypto-key-input" style="margin-bottom: 0;">
+<div class="key-box" style="background: rgba(0,0,0,0.5);">
+<span class="key-value" id="inviteCodeMid">9CHDIYSQ</span>
+<button class="key-copy-btn" onclick="copyInviteCode('inviteCodeMid')">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect>
+<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+</path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+<section class="faq-section section-padding" id="faq" style="; position: relative; overflow: hidden;">
+<div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
+<div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
+<div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
+</div>
+<div class="container" style="; position: relative; z-index: 1;">
+<div class="section-header">
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq-accordion">
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Can the development team access or freeze my funds?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>No. Administrative keys are permanently set to all zeros on the BSC block
+                                        explorer. No
+                                        founder, developer, or team member can access, move, or alter funds. The
+                                        protocol is
+                                        fully autonomous and decentralized.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>What is the realistic expected monthly return?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>The platform targets an average monthly return of 15%, with a documented range of 13–20% based on current network performance and the LCR. Only that interest enters the AI yield engine — your base capital is never at risk. compounding mechanism. All yields are settled daily in USDT directly to your wallet. Past performance does not guarantee future results.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Is the AIDAv2 platform secure?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>Yes. The underlying smart contracts and platform architecture have been
+                                        rigorously
+                                        audited and secured by both BEOSIN Blockchain Security and CertiK, with AIDAv2
+                                        holding a
+                                        BBB security rating from CertiK — indicating high confidence in code security
+                                        and
+                                        platform resilience.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>What is the difference between a D-Node and an A-Node?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>Nodes represent your status and earning power within the network. A D-Node is the
+                                        entry-level tier, while an A-Node (achieved via strategic wallet structuring and
+                                        higher
+                                        capital deployment) maximizes your 28% Community Power Rewards, cutting your
+                                        principal
+                                        doubling time down to roughly 4.5 months.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Why do I need to use the invite code 9CHDIYSQ?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>Entering this specific code during your dApp registration maps your wallet
+                                        directly to
+                                        the DeFi Yield Strategies network. This is a mandatory step to activate your
+                                        Node
+                                        hierarchy and ensure you qualify for the compounding 8-5-2 community rewards.
+                                    </p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Who built AIDAv2?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>AID is led by CEO Jason Runyon, who brings 30+ years of professional experience
+                                        and 14+ years in crypto, having supported 30+ blockchain project launches. The
+                                        engineering team includes veterans from Kraken Exchange and Oracle, with the
+                                        product team managing $500K+ in institutional crypto capital. The full team
+                                        spans CEO, Brand, APAC BD, Global Operations, Global Marketing, Engineering, and
+                                        Product Management.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Is there an AID token airdrop coming?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>An AID Token Airdrop Snapshot is planned for Q2 2026. Active node participants
+                                        and ecosystem contributors are positioned to qualify. AID token listings on
+                                        major centralized exchanges including Binance, Bybit, OKX, and Coinbase are
+                                        targeted for Q3 2026 at a planned ICO price of 10 USDT/AID.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>Does the AI control my money?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>No. AI components have zero custody authority, cannot place orders, and cannot
+                                        override execution rules. AI provides intelligence and context only — all
+                                        execution remains deterministic and governed by smart contract logic.</p>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header">
+<span>What protects against flash-loan attacks?</span>
+<svg class="accordion-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="accordion-content">
+<div class="accordion-inner">
+<p>AIDAv2's smart contracts have been specifically audited for flash-loan attack
+                                        surfaces by all three independent security firms — CertiK, Beosin, and AVE.</p>
+</div>
+</div>
+</div>
+</div><blockquote class="pull-quote">
+<p>"The root problem with conventional currency is all the trust that's required to make it work."</p>
+<cite>— Satoshi Nakamoto</cite>
+</blockquote>
+</div>
+</section>
+<section class="intel-section section-padding" id="intel-dispatch" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+<div class="container text-center">
+<div style="max-width: 800px; margin: 0 auto;">
+<h2 style="font-size: clamp(2rem, 3.5vw, 2.5rem); margin-bottom: 1rem; color: #fff;">Get the
+                            Weekly
+                            Yield
+                            Blueprint</h2>
+<p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6;">
+                            Architectural updates, ROI scenarios, and DeFi strategy breakdowns. Delivered free to your
+                            inbox.
+                        </p>
+<form action="https://api.web3forms.com/submit" class="intel-form" id="intelForm" method="POST" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; position: relative;">
+<input name="access_key" type="hidden" value="801eeed7-adcf-4a38-be5c-f218b053b38c"/>
+<input name="subject" type="hidden" value="New Blueprint Subscription">
+<input name="from_name" type="hidden" value="DeFi Yield Strategy Desk"/>
+<div style="flex: 1; min-width: 250px; max-width: 400px; text-align: left;">
+<label for="intelEmail" style="display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; margin-left: 0.25rem;">Secure
+                                    Email Address</label>
+<input id="intelEmail" name="email" placeholder="email@provider.com" required="" style="width: 100%; padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; transition: all 0.3s ease;" type="email"/>
+</div>
+<button class="glass-btn btn-primary" style="padding: 1rem 2rem; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; border: none; background: #fff; color: #000; transition: all 0.3s ease; margin-top: 1.25rem;" type="submit">
+                                Send Me the Blueprint
+                            </button>
+<!-- Success Message Container -->
+<div id="intelSuccess" style="display: none; position: absolute; top: 120%; left: 0; right: 0; color: #10B981; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;  transition: opacity 0.5s ease;">
+                                Transmission Received - Blueprint delivery initialized.
+                            </div>
+</input></form>
+</div>
+</div>
+</section>
+<section class="vip-section section-padding" id="vip-desk">
+<div class="container">
+<div class="bento-item glass-card vip-card" style="padding: 4rem 3rem; text-align: center; border-color: rgba(228, 179, 99, 0.3);">
+<div class="section-header" style="margin-bottom: 2rem;">
+<h2 style="font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1rem; color: #fff;">
+                                Institutional &amp;
+                                High-Net-Worth Deployments</h2>
+</div>
+<p style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem auto; line-height: 1.7;">
+                            Planning to deploy capital for a <strong style="color: var(--gold);">B-Node, A-Node, or
+                                3S-Node</strong> structure? Our VIP Strategy Desk provides white-glove onboarding,
+                            wallet
+                            structuring blueprints, and direct technical support to ensure your 23-wallet node
+                            architecture is
+                            deployed flawlessly for maximum yield.
+                        </p>
+<div class="social-links" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+<a class="social-link" href="https://x.com/AIDAv2_official" target="_blank">X (Twitter)</a>
+<a class="social-link" href="https://t.me/AIDAv2official" target="_blank">Telegram</a>
+<a class="social-link" href="https://www.linkedin.com/company/aidav2" target="_blank">LinkedIn</a>
+<a class="social-link" href="https://www.facebook.com/AIDAv2official/" target="_blank">Facebook</a>
+<a class="social-link" href="https://www.youtube.com/@AIDAv2" target="_blank">YouTube</a>
+<a class="social-link" href="https://medium.com/@AIDAv2" target="_blank">Medium</a>
+</div>
+<div class="vip-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+<a class="glass-btn premium-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=defi.yield.desk@proton.me&amp;su=Institutional/HNW%20Deployment%20Inquiry" style="display: flex; align-items: center; gap: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold); color: #fff;" target="_blank">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+</path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+                                Email the Strategy Desk
+                            </a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="action-footer section-padding" id="onboarding">
+<div class="container">
+<div class="bento-stacked">
+<!-- Redundant images removed: moved to App Installation header -->
+<div class="bento-item glass-card footer-content">
+<div class="image-card" style="margin-bottom: 2rem; border: none; background: transparent;">
+</div>
+<h2>Initiate Deployment</h2>
+<p style="margin-bottom: 2rem;">Install the dApp, enter your cryptographic invite code, and activate
+                        your first node.</p>
+<div style="background: rgba(228, 179, 99, 0.1); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left;">
+<h4 style="color: var(--gold); font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif;">
+                            CRITICAL DEPLOYMENT REQUIREMENT:</h4>
+<p style="color: #fff; font-size: 1rem; margin-bottom: 0;">You <strong>MUST</strong> use your
+                            mobile phone to download and install the AIDAv2 dApp. You must complete the installation
+                            <strong>BEFORE</strong> entering the secure referral code below.
+                        </p>
+</div>
+<div class="crypto-key-input">
+<span class="key-label">SECURE KEY</span>
+<div class="key-box">
+<span class="key-value" id="inviteCode">9CHDIYSQ</span>
+<button class="key-copy-btn" onclick="copyInviteCode()">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect>
+<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+</svg>
+</button>
+</div>
+</div>
+<div class="app-downloads">
+<a class="glass-btn btn-android" href="https://play.google.com/store/search?q=aidav2&amp;c=apps" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M17.523 15.3414c-.0697-.0343-.1466-.0514-.2234-.0514-.0769 0-.1538.0171-.2235.0514l-6.071 3.036c-.1404.07-.2306.2105-.2306.3686v5.885c0 .158.0902.2986.2306.3686.0697.0343.1466.0514.2235.0514.0768 0 .1537-.0171.2234-.0514l6.071-3.036c.1404-.07.2306-.2106.2306-.3686v-5.885c0-.1581-.0902-.2986-.2306-.3686zM4.6976 10.3642c.1133.1095.2783.136.4172.0673l5.0683-2.5028v5.109l-4.4312 2.1878c-.2019.0997-.4426-.0651-.4426-.2898v-4.116c0-.1662.0683-.3246.1883-.4555zM12.915 2.115v5.1092l5.0683 2.5028c.1389.0688.3039.0423.4172-.0673.12-.1308.1883-.2892.1883-.4554v-4.116c0-.2248-.2407-.3896-.4426-.2898l-4.4312 2.1878c-.1404.07-.3066.07-.447 0L8.837 4.7985c-.2019-.0997-.4426.0651-.4426.2898v4.116c0 .1662.0683.3246.1883.4554.1133.1096.2783.1361.4172.0673l5.0683-2.5028v-5.109l-4.4312 2.1878c-.1404.07-.3066.07-.447 0L4.7644 2.115c-.2019-.0998-.4426.065-.4426.2898v4.116c0 .1662.0683.3246.1883.4554.1133.1096.2783.1361.4172.0673L10.005 9.531c.361.178.6972.1824 1.0583 0L17.142 6.551v4.1378l4.4312-2.1878c.2019-.0998.4426.065.4426.2898v-4.116c0-.1662-.0683-.3246-.1883-.4554-.1133-.1095-.2783-.136-.4172-.0672L15.9084 6.643 11.4772 4.455c-.1404-.07-.3066-.07-.447 0L6.599 6.643 1.5307 4.1402C1.4174 4.084 1.2524 4.1105 1.139 4.22c-.12.131-.1883.2894-.1883.4555v4.116c0 .2247.2407.3895.4426.2898l4.4312-2.1878v5.109L.4172 14.8143C.2783 14.883.1133 14.8565 0 14.747c-.12-.131-.1883-.2894-.1883-.4555v-4.116c0-.2247.2407-.3895.4426-.2898l4.4312 2.1878z">
+</path>
+</svg>
+                            Android
+                        </a>
+<a class="glass-btn btn-ios" href="https://testflight.apple.com/join/9d5vabsq" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M16.365 7.913c-2.478 0-4.008-1.558-4.008-3.791 0-2.261 1.637-3.953 4.102-3.953 2.454 0 3.99 1.547 3.99 3.791 0 2.274-1.638 3.953-4.084 3.953zm-5.02 1.346c-1.396-.757-3.04-1.127-4.661-1.127-2.618 0-5.181 1.096-6.685 3.324-1.488 2.221-1.372 5.093-.205 7.632 1.171 2.541 3.256 5.094 6.27 5.064 1.564-.016 2.376-.566 3.935-.566 1.562 0 2.378.55 4.026.566 2.569.029 4.88-2.673 6.002-5.176 1.05-2.348 1.157-4.9.049-7.237-1.077-2.288-3.3-3.08-5.3-3.1-1.625-.018-3.235.816-4.498 1.259z">
+</path>
+</svg>
+                            iOS
+                        </a>
+<a class="glass-btn btn-web" href="https://dex.aidav2.com/" rel="noopener noreferrer" style="text-decoration: none;" target="_blank">
+                            Access AID.EX →
+                        </a>
+</div>
+<div style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem;">
+<p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; text-align: center;">
+                            Track AIDAv2 Metrics On:</p>
+<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+<a class="glass-btn" href="https://coinmarketcap.com/currencies/aid/" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<img alt="CoinMarketCap" src="https://coinmarketcap.com/favicon.ico" style="width: 16px; height: 16px;"/>
+                                CoinMarketCap
+                            </a>
+<a class="glass-btn" href="https://www.coingecko.com/en/coins/aid" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<img alt="CoinGecko" src="https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png" style="width: 16px; height: 16px; border-radius: 50%;"/>
+                                CoinGecko
+                            </a>
+<a class="glass-btn" href="https://www.rootdata.com/Projects/detail/AIDav2?k=MTU5OTU%3D" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<img alt="RootData" src="https://www.rootdata.com/favicon.ico" style="width: 16px; height: 16px; border-radius: 50%; background-color: white;"/>
+                                RootData
+                            </a>
+<a class="glass-btn" href="https://dexscreener.com/bsc/0xdcd03dc1a8b899585079fe6ee861129dee294176" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<img alt="DexScreener" src="https://dexscreener.com/favicon.ico" style="width: 16px; height: 16px; border-radius: 50%; background-color: black;"/>
+                                DexScreener
+                            </a>
+</div>
+</div>
+</div>
+<div class="bento-item glass-card image-card">
+</div>
+</div>
+</div>
+<!-- Official Links -->
+<div class="container" style="margin-top: 2rem; text-align: center;">
+<p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Official AIDAv2 Channels:</p>
+<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+<a class="glass-btn" href="https://x.com/AIDAv2_official" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+</path>
+</svg>
+                    X (Twitter)
+                </a>
+<a class="glass-btn" href="https://t.me/AIDAv2official" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z">
+</path>
+</svg>
+                    Telegram
+                </a>
+<a class="glass-btn" href="https://aid-1.gitbook.io/aid" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+                    📄 Whitepaper
+                </a>
+<a class="glass-btn" href="https://www.youtube.com/@AIDAv2" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+</path>
+</svg>
+                    YouTube
+                </a>
+<a class="glass-btn" href="https://medium.com/@AIDAv2" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z">
+</path>
+</svg>
+                    Medium
+                </a>
+<a class="glass-btn" href="https://www.linkedin.com/company/aidav2" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+</path>
+</svg>
+                    LinkedIn
+                </a>
+<a class="glass-btn" href="https://www.facebook.com/AIDAv2official/" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 0.6rem 1.25rem; font-size: 0.9rem;" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+</path>
+</svg>
+                    Facebook
+                </a>
+</div>
+</div>
+<!-- Global Compliance Disclaimer -->
+<div class="container" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+<p class="compliance-disclaimer" style="color: #E2E8F0; font-size: 0.85rem; text-align: center; max-width: 900px; margin: 3rem auto 0; line-height: 1.8;">
+DeFi Yield Strategies is an independent community referral and educational hub, not officially
+                affiliated with the AIDAv2 core team. All capital deployments carry inherent risk. The Lossless Cycle
+                Restaking mechanism protects principal via third-party Venus Protocol deployment; however, DeFi
+                protocols carry smart contract and market risks. Smart contracts have been independently audited by
+                CertiK, Beosin, and AVE. Users are responsible for maintaining sufficient Computing Power wallet
+                balances to avoid reward reduction. Always conduct independent research before deploying capital.</p>
+</div>
+</footer>
+<div class="support-widget" id="supportWidget">
+<button aria-label="Open Support" class="support-btn" id="supportBtn" style=" cursor: pointer;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+<div class="support-modal hidden" id="supportModal">
+<div class="support-modal-header">
+<h3>VIP Strategy Desk</h3>
+<button class="close-btn" id="closeSupport">×</button>
+</div>
+<div class="support-modal-body" id="supportFormContainer">
+<form action="https://formsubmit.co/ajax/defi.yield.desk@proton.me" id="supportForm" method="POST">
+<input name="access_key" type="hidden" value="801eeed7-adcf-4a38-be5c-f218b053b38c"/>
+<input name="subject" type="hidden" value="Message for DeFi Yield Desk"/>
+<input name="from_name" type="hidden" value="DeFi Yield Strategy Desk"/>
+<div class="form-group">
+<label for="supportName">Identity/Entity</label>
+<input id="supportName" name="name" placeholder="Name or Alias" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="supportEmail">Secure Email</label>
+<input id="supportEmail" name="email" placeholder="email@provider.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="supportMessage">Inquiry Details</label>
+<textarea id="supportMessage" name="message" placeholder="Describe your deployment requirements..." required="" rows="4"></textarea>
+</div>
+<button class="support-submit-btn" id="supportSubmit" type="submit">
+                        Initiate Secure Transmission
+                    </button>
+</form>
+</div>
+<div class="support-success hidden" id="supportSuccess">
+<div class="success-icon">
+<svg fill="none" height="48" stroke="#10B981" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="48">
+<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+</div>
+<p>Thank you for your message. DeFi Yield Strategies Support Desk will get back to you shortly.</p>
+</div>
+</div>
+<script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.nav-tab');
+                const contents = document.querySelectorAll('.tab-content');
+
+                function switchTab(hash) {
+                    if (!hash || hash === '#') hash = '#overview';
+                    const targetId = 'tab-' + hash.substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        contents.forEach(c => c.classList.remove('active'));
+                        tabs.forEach(t => t.classList.remove('active'));
+
+                        targetElement.classList.add('active');
+
+                        const activeTab = document.querySelector(`.nav-tab[href="${hash}"]`);
+                        if (activeTab) activeTab.classList.add('active');
+
+                        const navTabs = document.getElementById('navTabs');
+                        if (navTabs) navTabs.classList.remove('open');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const hash = tab.getAttribute('href');
+                        history.pushState(null, null, hash);
+                        switchTab(hash);
+                    });
+                });
+
+                window.addEventListener('popstate', () => switchTab(window.location.hash));
+                switchTab(window.location.hash);
+
+                // Stat Counter Animation via Intersection Observer
+                const counters = document.querySelectorAll('.ticker-value');
+                const speed = 200; // lower is slower
+
+                const animateCounters = (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const updateCount = () => {
+                                const targetText = counter.getAttribute('data-target') || counter.innerText;
+                                // Extract numbers
+                                const targetNum = +targetText.replace(/[^0-9.]/g, '');
+                                if (!targetNum || isNaN(targetNum)) return; // Skip non-numerics securely
+
+                                if (!counter.getAttribute('data-target')) {
+                                    counter.setAttribute('data-target', targetText);
+                                    counter.innerText = '0';
+                                }
+
+                                const count = +counter.innerText.replace(/[^0-9.]/g, '');
+                                const inc = targetNum / speed;
+
+                                if (count < targetNum) {
+                                    // format back
+                                    let currentVal = Math.ceil(count + inc);
+                                    if (targetText.includes('.') && targetNum < 100) currentVal = (count + inc).toFixed(1);
+
+                                    let display = targetText.replace(/[0-9.]+/g, currentVal);
+                                    if (targetText.includes(',')) display = targetText.replace(/[0-9.,]+/g, currentVal.toLocaleString());
+
+                                    counter.innerText = display;
+                                    setTimeout(updateCount, 15);
+                                } else {
+                                    counter.innerText = targetText;
+                                }
+                            };
+                            updateCount();
+                            observer.unobserve(counter); // Run once
+                        }
+                    });
+                };
+
+                const counterObserver = new IntersectionObserver(animateCounters, {
+                    threshold: 0.5
+                });
+
+                counters.forEach(counter => {
+                    counterObserver.observe(counter);
+                });
+            });
+        </script>
+<script src="script.js"></script>
+</div>
+<!-- LEGAL DISCLAIMER -->
+<div id="legal-disclaimer" style="max-width: 1000px; margin: 4rem auto 2rem auto; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: #8A96A8; font-size: 0.85rem; line-height: 1.6; text-align: center; font-family: 'Inter', sans-serif;">
+    <strong style="color: #D0D8E4;">Standard Legal Disclaimer:</strong> The information provided on this website, including all yield projections, node structures, and the "8-5-2" referral mechanism, is for educational and informational purposes only and should not be construed as financial, investment, or legal advice. DeFi Yield Strategies and AIDAv2 are decentralized protocols; interacting with smart contracts involves inherent technical and market risks. Neither DeFi Yield Strategies, AIDAv2, Venus Protocol, nor any associated affiliates, developers, or community members bear any responsibility or liability for capital losses, smart contract exploits, liquidation events, or network failures. "Principal Isolation Architecture" and "Lossless Cycle Restaking" describe protocol mechanics, not guarantees of absolute security or legal protections. Users deploy capital entirely at their own risk and must conduct independent research. Past performance does not guarantee future results.
+</div>
+<!-- /LEGAL DISCLAIMER -->
+
+</body>
+</html>
