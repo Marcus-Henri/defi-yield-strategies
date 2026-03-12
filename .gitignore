@@ -1,0 +1,25 @@
+# Python scripts (working files - not part of deployment)
+*.py
+__pycache__/
+
+# Backup & debug HTML files
+*_backup*.html
+preview.html
+vercel_test.html
+faq_debug.html
+eagle.html
+early.html
+index_tabs.html
+
+# Office temp files
+~$*.docx
+
+# Claude Code
+.claude/
+
+# Misc docs (not part of site)
+*.pdf
+*.docx
+
+# Folders
+Social Media Content Engine/
