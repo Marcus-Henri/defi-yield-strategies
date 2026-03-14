@@ -106,6 +106,13 @@ blockquote.pull-quote cite {
 }
 </style>
 <style>#risk-banner .tooltip-text { bottom: auto !important; top: 130% !important; }</style>
+<style>
+:root { --nav-height: 96px; }
+.sticky-header { height: auto !important; flex-direction: column; padding: 6px 0 !important; }
+.sticky-header > div:first-child { width: 100%; padding: 2px 1rem; }
+.sticky-header .container.nav-container { padding: 4px 1rem !important; }
+.nav-tabs-container { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+</style>
 </head>
 <body>
 <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -115,10 +122,10 @@ blockquote.pull-quote cite {
 <div class="orb orb-3"></div>
 </div>
 <nav class="sticky-header">
-<div class="container nav-container">
-<div class="logo">
-<span class="logo-text">DeFi Yield <span style="color: var(--gold);">Strategies</span></span>
+<div style="text-align:center;padding:4px 0 2px;border-bottom:1px solid rgba(123,97,255,0.1);">
+<span class="logo-text" style="font-size:1.1rem;letter-spacing:0.02em;">DeFi Yield <span style="color:var(--gold);">Strategies</span></span>
 </div>
+<div class="container nav-container" style="justify-content:center;">
 <div class="nav-tabs-container" id="navTabs" role="navigation" aria-label="Main navigation">
 <a class="nav-tab active" data-tab="tab-overview" href="#overview">Overview</a>
 <a class="nav-tab" data-tab="tab-earn" href="#earn">Earn</a>
@@ -132,7 +139,7 @@ blockquote.pull-quote cite {
 </div>
 </nav>
 <!-- BATCH 5 RISK BANNER -->
-<div id="risk-banner" style="display:flex; align-items:center; justify-content:center; gap:12px; background:#1A1A2E; padding:6px 16px; font-size:11px; color:#8A96A8; line-height:1.4; position:sticky; top:60px; margin-top:80px; z-index:999; border-bottom:1px solid rgba(123,97,255,0.15);">
+<div id="risk-banner" style="display:flex; align-items:center; justify-content:center; gap:12px; background:#1A1A2E; padding:6px 16px; font-size:11px; color:#8A96A8; line-height:1.4; z-index:999; border-bottom:1px solid rgba(123,97,255,0.15);">
 <span>⚠️ DeFi carries risk. Yields are variable, not guaranteed. Principal protection is via <span class="tooltip-term">Venus Protocol<span class="tooltip-text">A Binance-backed decentralised lending platform with billions in TVL, used here as the principal safe-hold layer.</span></span> — not an insurance product. Deploy only what you can afford.</span>
 <a href="#legal-disclaimer" style="color:#7B61FF; white-space:nowrap; text-decoration: underline;" onclick="document.getElementById('legal-disclaimer').scrollIntoView({behavior: 'smooth'}); return false;">Understand the Risks →</a>
 <button onclick="this.parentElement.style.display='none'; sessionStorage.setItem('riskDismissed','1');" style="background:none; border:none; color:#8A96A8; cursor:pointer; font-size:14px; padding:0 4px; margin-left:8px;">×</button>
@@ -141,7 +148,7 @@ blockquote.pull-quote cite {
   if(sessionStorage.getItem('riskDismissed')) document.getElementById('risk-banner').style.display='none';
 </script>
 <!-- /BATCH 5 RISK BANNER -->
-<main id="main-content" class="" style="padding-top: 100px; min-height: 80vh;">
+<main id="main-content" class="" style="min-height: 80vh;">
 <div class="tab-content active" id="tab-overview">
 <header class="hero-section" id="hero" style="padding-top: 4rem; min-height: auto;">
 <div class="container hero-stacked" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3rem;">
@@ -248,6 +255,95 @@ blockquote.pull-quote cite {
 <div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
 </div>
 <div class="container" style="; position: relative; z-index: 1;">
+<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:20px 0 8px 0;">
+<svg id="robot-nexus" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto">
+<defs>
+  <filter id="nx-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="nx-soft"><feGaussianBlur stdDeviation="8"/></filter>
+  <linearGradient id="nx-body" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#16213e"/></linearGradient>
+  <linearGradient id="nx-accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient>
+</defs>
+
+<!-- Ambient glow behind robot -->
+<ellipse cx="200" cy="420" rx="120" ry="20" fill="#7B61FF" opacity="0.15" filter="url(#nx-soft)"/>
+
+<!-- Floating AID data streams background -->
+<text x="18" y="80" font-family="monospace" font-size="9" fill="#7B61FF" opacity="0.4">AID.DATA</text>
+<text x="310" y="110" font-family="monospace" font-size="9" fill="#00D4FF" opacity="0.4">+42%</text>
+<text x="22" y="200" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.3">YIELD:13-20%</text>
+<text x="300" y="250" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.3">BSC/ETH</text>
+<text x="30" y="360" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.3">NODES:2400+</text>
+<text x="290" y="380" font-family="monospace" font-size="9" fill="#00D4FF" opacity="0.4">LIVE</text>
+
+<!-- Legs -->
+<rect x="158" y="400" width="32" height="60" rx="8" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="210" y="400" width="32" height="60" rx="8" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Feet -->
+<rect x="150" y="450" width="48" height="16" rx="6" fill="#0f0f1a" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="202" y="450" width="48" height="16" rx="6" fill="#0f0f1a" stroke="#7B61FF" stroke-width="1.5"/>
+
+<!-- Body -->
+<rect x="120" y="230" width="160" height="180" rx="20" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="2"/>
+<!-- Chest panel -->
+<rect x="140" y="255" width="120" height="70" rx="10" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1" opacity="0.8"/>
+<!-- AID chest logo -->
+<text x="165" y="285" font-family="'Space Grotesk',sans-serif" font-size="22" font-weight="800" fill="url(#nx-accent)" filter="url(#nx-glow)">AID</text>
+<text x="167" y="302" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.8">PROTOCOL v2</text>
+<!-- Chest lights -->
+<circle cx="155" cy="345" r="5" fill="#10B981" filter="url(#nx-glow)"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+<circle cx="175" cy="345" r="5" fill="#7B61FF" filter="url(#nx-glow)"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/></circle>
+<circle cx="195" cy="345" r="5" fill="#00D4FF" filter="url(#nx-glow)"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
+<!-- Yield bar -->
+<rect x="140" y="365" width="120" height="8" rx="4" fill="#1a1a2e"/>
+<rect x="140" y="365" width="84" height="8" rx="4" fill="url(#nx-accent)"><animate attributeName="width" values="84;100;84" dur="3s" repeatCount="indefinite"/></rect>
+<text x="267" y="373" font-size="7" font-family="monospace" fill="#10B981">70%</text>
+
+<!-- Arms -->
+<rect x="60" y="240" width="58" height="24" rx="12" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="282" y="240" width="58" height="24" rx="12" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Hands - left pointing, right waving -->
+<circle cx="68" cy="252" r="14" fill="#0f0f1a" stroke="#7B61FF" stroke-width="1.5"/>
+<circle cx="332" cy="252" r="14" fill="#0f0f1a" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Thumb up right hand -->
+<rect x="326" y="238" width="7" height="12" rx="3" fill="#7B61FF"/>
+<rect x="320" y="246" width="24" height="8" rx="4" fill="#7B61FF"/>
+
+<!-- Neck -->
+<rect x="178" y="210" width="44" height="22" rx="8" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="1.5"/>
+
+<!-- Head -->
+<rect x="130" y="100" width="140" height="115" rx="22" fill="url(#nx-body)" stroke="#7B61FF" stroke-width="2"/>
+<!-- HUD visor -->
+<rect x="140" y="115" width="120" height="55" rx="10" fill="#050508" stroke="#00D4FF" stroke-width="1.5"/>
+<!-- Left eye - normal -->
+<rect x="150" y="125" width="40" height="28" rx="6" fill="#0a0a18" stroke="#7B61FF" stroke-width="1"/>
+<circle id="nx-el" cx="170" cy="139" r="9" fill="#7B61FF" opacity="0.9" filter="url(#nx-glow)"/>
+<circle id="nx-elp" cx="170" cy="139" r="4" fill="#fff"/>
+<!-- Right eye - WINKING (closed) -->
+<rect x="210" y="125" width="40" height="28" rx="6" fill="#0a0a18" stroke="#7B61FF" stroke-width="1"/>
+<path d="M213 139 Q230 148 247 139" stroke="#00D4FF" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#nx-glow)"/>
+<!-- Wink lash -->
+<line x1="218" y1="133" x2="215" y2="127" stroke="#00D4FF" stroke-width="2"/>
+<line x1="230" y1="131" x2="230" y2="124" stroke="#00D4FF" stroke-width="2"/>
+<line x1="242" y1="133" x2="245" y2="127" stroke="#00D4FF" stroke-width="2"/>
+<!-- HUD data lines -->
+<line x1="145" y1="158" x2="255" y2="158" stroke="#7B61FF" stroke-width="0.5" opacity="0.5"/>
+<text x="148" y="168" font-family="monospace" font-size="7" fill="#00D4FF" opacity="0.8">SYS:ONLINE</text>
+<text x="220" y="168" font-family="monospace" font-size="7" fill="#10B981" opacity="0.8">OK</text>
+<!-- Mouth - big grin -->
+<path d="M158 192 Q200 210 242 192" stroke="#00D4FF" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#nx-glow)"/>
+<!-- Antennas -->
+<line x1="170" y1="100" x2="155" y2="72" stroke="#7B61FF" stroke-width="2"/>
+<circle cx="155" cy="68" r="6" fill="#7B61FF" filter="url(#nx-glow)"><animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/></circle>
+<line x1="230" y1="100" x2="245" y2="72" stroke="#00D4FF" stroke-width="2"/>
+<circle cx="245" cy="68" r="6" fill="#00D4FF" filter="url(#nx-glow)"><animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite"/></circle>
+
+<style>
+#robot-nexus { animation: float-nexus 4s ease-in-out infinite; transform-origin: 200px 300px; }
+@keyframes float-nexus { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+</style>
+</svg>
+</div>
 <div class="section-header">
 <h2>How It Works: Three Steps to Systematic Yield</h2>
 <p>Deploy your capital into a high-performance yield framework in under 5 minutes.</p>
@@ -377,6 +473,105 @@ blockquote.pull-quote cite {
 <div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
 </div>
 <div class="container" style="; position: relative; z-index: 1;">
+<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:20px 0 8px 0;">
+<svg id="robot-meridian" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto">
+<defs>
+  <filter id="md-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="md-soft"><feGaussianBlur stdDeviation="10"/></filter>
+  <radialGradient id="md-body" cx="50%" cy="30%"><stop offset="0%" stop-color="#1e1b4b"/><stop offset="100%" stop-color="#0a0b0f"/></radialGradient>
+  <linearGradient id="md-ring" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7B61FF"/><stop offset="50%" stop-color="#00D4FF"/><stop offset="100%" stop-color="#7B61FF"/></linearGradient>
+</defs>
+
+<!-- Soft glow platform -->
+<ellipse cx="200" cy="440" rx="100" ry="14" fill="#7B61FF" opacity="0.2" filter="url(#md-soft)"/>
+
+<!-- Orbiting AID data rings (3 rings at different angles) -->
+<!-- Ring 1 - horizontal -->
+<ellipse cx="200" cy="200" rx="130" ry="28" fill="none" stroke="url(#md-ring)" stroke-width="1.5" opacity="0.5">
+  <animateTransform attributeName="transform" type="rotate" values="0 200 200;360 200 200" dur="8s" repeatCount="indefinite"/>
+</ellipse>
+<text x="0" y="0" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.9" transform="rotate(0 200 200) translate(320 204)">AID</text>
+
+<!-- Ring 2 - tilted -->
+<ellipse cx="200" cy="200" rx="110" ry="22" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.4" transform="rotate(60 200 200)">
+  <animateTransform attributeName="transform" type="rotate" values="60 200 200;420 200 200" dur="6s" repeatCount="indefinite"/>
+</ellipse>
+
+<!-- Ring 3 - other tilt -->
+<ellipse cx="200" cy="200" rx="95" ry="18" fill="none" stroke="#7B61FF" stroke-width="1" opacity="0.35" transform="rotate(-45 200 200)">
+  <animateTransform attributeName="transform" type="rotate" values="-45 200 200;315 200 200" dur="10s" repeatCount="indefinite"/>
+</ellipse>
+
+<!-- Floating yield numbers -->
+<text x="50" y="120" font-family="monospace" font-size="9" fill="#10B981" opacity="0.5">+13%</text>
+<text x="310" y="160" font-family="monospace" font-size="9" fill="#7B61FF" opacity="0.5">APY</text>
+<text x="40" y="300" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.4">DAILY</text>
+<text x="320" y="320" font-family="monospace" font-size="8" fill="#10B981" opacity="0.4">+42%</text>
+
+<!-- Crossed legs / lotus base -->
+<ellipse cx="200" cy="400" rx="85" ry="22" fill="#12122a" stroke="#7B61FF" stroke-width="1.5"/>
+<ellipse cx="155" cy="395" rx="40" ry="16" fill="#12122a" stroke="#7B61FF" stroke-width="1"/>
+<ellipse cx="245" cy="395" rx="40" ry="16" fill="#12122a" stroke="#7B61FF" stroke-width="1"/>
+
+<!-- Body - rounder, serene -->
+<ellipse cx="200" cy="295" rx="75" ry="85" fill="url(#md-body)" stroke="#7B61FF" stroke-width="2"/>
+
+<!-- Belly panel - AID -->
+<ellipse cx="200" cy="295" rx="48" ry="40" fill="#0a0a1a" stroke="#7B61FF" stroke-width="1"/>
+<text x="172" y="290" font-family="'Space Grotesk',sans-serif" font-size="20" font-weight="800" fill="url(#md-ring)" filter="url(#md-glow)">AID</text>
+<text x="168" y="308" font-family="monospace" font-size="7" fill="#00D4FF">MERIDIAN NODE</text>
+<!-- Pulsing core -->
+<circle cx="200" cy="325" r="10" fill="#7B61FF" opacity="0.4" filter="url(#md-glow)"><animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite"/></circle>
+<circle cx="200" cy="325" r="5" fill="#7B61FF" filter="url(#md-glow)"/>
+
+<!-- Meditating arms - open palms upward -->
+<path d="M125 280 Q90 300 75 330" fill="none" stroke="#7B61FF" stroke-width="12" stroke-linecap="round"/>
+<!-- Left palm -->
+<ellipse cx="68" cy="342" rx="18" ry="12" fill="#12122a" stroke="#7B61FF" stroke-width="1.5" transform="rotate(-15 68 342)"/>
+<!-- Floating coin on palm -->
+<circle cx="68" cy="328" r="8" fill="#7B61FF" opacity="0.8" filter="url(#md-glow)"><animate attributeName="cy" values="328;320;328" dur="2s" repeatCount="indefinite"/></circle>
+<text x="62" y="332" font-size="7" font-weight="800" fill="#fff">$</text>
+
+<path d="M275 280 Q310 300 325 330" fill="none" stroke="#7B61FF" stroke-width="12" stroke-linecap="round"/>
+<!-- Right palm -->
+<ellipse cx="332" cy="342" rx="18" ry="12" fill="#12122a" stroke="#7B61FF" stroke-width="1.5" transform="rotate(15 332 342)"/>
+<!-- Floating coin -->
+<circle cx="332" cy="328" r="8" fill="#00D4FF" opacity="0.8" filter="url(#md-glow)"><animate attributeName="cy" values="322;330;322" dur="2.3s" repeatCount="indefinite"/></circle>
+<text x="326" y="332" font-size="7" font-weight="800" fill="#fff">$</text>
+
+<!-- Neck -->
+<rect x="182" y="200" width="36" height="18" rx="8" fill="url(#md-body)" stroke="#7B61FF" stroke-width="1.5"/>
+
+<!-- Head - round & serene -->
+<circle cx="200" cy="170" r="72" fill="url(#md-body)" stroke="#7B61FF" stroke-width="2"/>
+
+<!-- Third eye (wisdom dot) -->
+<circle cx="200" cy="130" r="7" fill="#7B61FF" filter="url(#md-glow)"><animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/></circle>
+<text x="196" y="134" font-size="7" font-weight="800" fill="#fff">A</text>
+
+<!-- Closed serene eyes - happy squint -->
+<path d="M155 162 Q172 152 189 162" stroke="#7B61FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M211 162 Q228 152 245 162" stroke="#7B61FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<!-- Eye glow -->
+<path d="M155 162 Q172 152 189 162" stroke="#00D4FF" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M211 162 Q228 152 245 162" stroke="#00D4FF" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+<!-- Serene smile -->
+<path d="M170 192 Q200 210 230 192" stroke="#00D4FF" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#md-glow)"/>
+<!-- Rosy cheeks -->
+<circle cx="160" cy="180" r="14" fill="#7B61FF" opacity="0.15"/>
+<circle cx="240" cy="180" r="14" fill="#7B61FF" opacity="0.15"/>
+
+<!-- Halo antenna -->
+<ellipse cx="200" cy="98" rx="35" ry="8" fill="none" stroke="url(#md-ring)" stroke-width="2" filter="url(#md-glow)"><animate attributeName="ry" values="8;4;8" dur="3s" repeatCount="indefinite"/></ellipse>
+<line x1="200" y1="98" x2="200" y2="110" stroke="#7B61FF" stroke-width="2"/>
+
+<style>
+#robot-meridian { animation: float-meridian 5s ease-in-out infinite; transform-origin: 200px 280px; }
+@keyframes float-meridian { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+</style>
+</svg>
+</div>
 <div class="section-header">
 <div style="margin-bottom: 2rem; display: flex; justify-content: center;">
 </div>
@@ -389,216 +584,7 @@ blockquote.pull-quote cite {
 </blockquote>
 <div class="bento-stacked">
 <div class="bento-item glass-card image-card" style="display:flex;align-items:center;justify-content:center;min-height:280px;">
-<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:16px 0;">
-<style>
-#robot-oracle { animation: float-oracle 5s ease-in-out infinite; transform-origin: 200px 300px; }
-@keyframes float-oracle { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-.oracle-robot-wrapper svg { max-width:380px; width:100%; height:auto; cursor:crosshair; }
-</style>
-<svg id="robot-oracle" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-<defs>
-  <filter id="c-gc"><feGaussianBlur stdDeviation="3" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="c-gp"><feGaussianBlur stdDeviation="5" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="c-gs"><feGaussianBlur stdDeviation="9" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <linearGradient id="c-body" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1e2238"/><stop offset="100%" stop-color="#0e1020"/>
-  </linearGradient>
-  <linearGradient id="c-grad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D4FF"/>
-  </linearGradient>
-  <radialGradient id="c-orb" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.9"/>
-    <stop offset="100%" stop-color="#7B61FF" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="c-eye" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00D4FF"/>
-    <stop offset="70%" stop-color="#0088aa"/>
-    <stop offset="100%" stop-color="#004466" stop-opacity="0"/>
-  </radialGradient>
-</defs>
 
-<!-- Ground glow -->
-<ellipse cx="200" cy="470" rx="150" ry="12" fill="#7B61FF" fill-opacity="0.12"/>
-
-<!-- HOLOGRAPHIC RINGS around body — the data halo -->
-<!-- ring 1 -->
-<ellipse cx="200" cy="280" rx="150" ry="35" fill="none" stroke="#7B61FF" stroke-width="0.8" stroke-dasharray="8 4" stroke-opacity="0.5">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 280" to="360 200 280" dur="10s" repeatCount="indefinite"/>
-</ellipse>
-<!-- ring 1 data dot -->
-<circle cx="350" cy="280" r="5" fill="#7B61FF" filter="url(#c-gp)">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 280" to="360 200 280" dur="10s" repeatCount="indefinite"/>
-</circle>
-<!-- ring 2 -->
-<ellipse cx="200" cy="280" rx="168" ry="42" fill="none" stroke="#00D4FF" stroke-width="0.5" stroke-dasharray="4 8" stroke-opacity="0.35">
-  <animateTransform attributeName="transform" type="rotate" from="360 200 280" to="0 200 280" dur="14s" repeatCount="indefinite"/>
-</ellipse>
-<!-- ring 2 data dot -->
-<circle cx="32" cy="280" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animateTransform attributeName="transform" type="rotate" from="360 200 280" to="0 200 280" dur="14s" repeatCount="indefinite"/>
-</circle>
-<!-- ring 3 tilted -->
-<ellipse cx="200" cy="240" rx="130" ry="20" fill="none" stroke="#7B61FF" stroke-width="0.4" stroke-dasharray="3 5" stroke-opacity="0.25" transform="rotate(-15 200 240)">
-  <animateTransform attributeName="transform" type="rotate" from="-15 200 240" to="345 200 240" dur="20s" repeatCount="indefinite" additive="sum"/>
-</ellipse>
-
-<!-- chart sparklines floating left -->
-<g transform="translate(28,200)">
-  <rect x="0" y="0" width="60" height="50" rx="5" fill="#0c0e18" stroke="#7B61FF" stroke-width="0.6" stroke-opacity="0.5"/>
-  <text x="30" y="13" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#9CA3AF">PORTFOLIO</text>
-  <polyline points="6,40 14,32 22,35 30,22 38,26 46,14 54,10" fill="none" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <polyline points="6,40 14,32 22,35 30,22 38,26 46,14 54,10" fill="none" stroke="#00D4FF" stroke-width="0.5" stroke-opacity="0.3"/>
-</g>
-
-<!-- yield panel right -->
-<g transform="translate(316,220)">
-  <rect x="-26" y="0" width="60" height="60" rx="5" fill="#0c0e18" stroke="#00D4FF" stroke-width="0.6" stroke-opacity="0.5"/>
-  <text x="4" y="14" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#9CA3AF">DAILY YIELD</text>
-  <text x="4" y="30" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="14" font-weight="700" fill="#00D4FF">0.63%</text>
-  <text x="4" y="46" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#10B981">● PROTECTED</text>
-</g>
-
-<!-- LEGS -->
-<path d="M172,390 L176,460 L195,460 L196,390Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<path d="M204,390 L205,460 L224,460 L228,390Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<ellipse cx="184" cy="436" rx="12" ry="8" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1" filter="url(#c-gc)"/>
-<ellipse cx="216" cy="436" rx="12" ry="8" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1" filter="url(#c-gc)"/>
-<rect x="166" y="456" width="36" height="10" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.6"/>
-<rect x="198" y="456" width="36" height="10" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.6"/>
-
-<!-- ARMS arms slightly raised, palms forward — presenting data -->
-<path d="M120,230 Q110,280 114,340 L138,340 Q140,282 148,232Z" fill="url(#c-body)" stroke="#00D4FF" stroke-width="0.8"/>
-<path d="M252,232 Q260,282 260,340 L284,340 Q280,280 290,230Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<!-- hands open/flat -->
-<ellipse cx="126" cy="344" rx="18" ry="10" fill="#1a1e30" stroke="#00D4FF" stroke-width="1" filter="url(#c-gc)"/>
-<ellipse cx="274" cy="344" rx="18" ry="10" fill="#1a1e30" stroke="#7B61FF" stroke-width="1" filter="url(#c-gp)"/>
-<!-- data orbs above each palm -->
-<circle cx="126" cy="328" r="8" fill="url(#c-orb)" filter="url(#c-gs)">
-  <animate attributeName="r" values="8;11;8" dur="2s" repeatCount="indefinite"/>
-  <animate attributeName="cy" values="328;322;328" dur="2s" repeatCount="indefinite"/>
-</circle>
-<circle cx="274" cy="328" r="8" fill="none" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)">
-  <animate attributeName="r" values="8;11;8" dur="2s" begin="1s" repeatCount="indefinite"/>
-  <animate attributeName="cy" values="328;322;328" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-<circle cx="274" cy="328" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animate attributeName="cy" values="328;322;328" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-<!-- shoulder joints -->
-<circle cx="145" cy="232" r="14" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gc)"/>
-<circle cx="145" cy="232" r="7" fill="#7B61FF" fill-opacity="0.5"/>
-<circle cx="255" cy="232" r="14" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gp)"/>
-<circle cx="255" cy="232" r="7" fill="#00D4FF" fill-opacity="0.5"/>
-
-<!-- TORSO -->
-<path d="M148,228 Q140,310 142,390 L258,390 Q260,310 252,228Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.9"/>
-<!-- central energy channel -->
-<line x1="200" y1="250" x2="200" y2="385" stroke="url(#c-grad)" stroke-width="1.5" stroke-opacity="0.4" filter="url(#c-gc)"/>
-<!-- chest plate -->
-<ellipse cx="200" cy="300" rx="46" ry="58" fill="#0c0e18" stroke="#7B61FF" stroke-width="0.7" stroke-opacity="0.5"/>
-<!-- energy core -->
-<circle cx="200" cy="298" r="36" fill="none" stroke="url(#c-grad)" stroke-width="0.6" stroke-dasharray="6 4">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 298" to="360 200 298" dur="6s" repeatCount="indefinite"/>
-</circle>
-<circle cx="200" cy="298" r="26" fill="none" stroke="#7B61FF" stroke-width="1" stroke-opacity="0.4"/>
-<circle cx="200" cy="298" r="18" fill="#0a0c18" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<!-- eye of providence style — triangle in circle -->
-<polygon points="200,282 216,308 184,308" fill="none" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gp)"/>
-<circle cx="200" cy="298" r="5" fill="#7B61FF" filter="url(#c-gs)"/>
-<circle cx="200" cy="298" r="2.5" fill="#00D4FF"/>
-<!-- abs plates -->
-<rect x="178" y="348" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-<rect x="178" y="360" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-<rect x="178" y="372" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-
-<!-- NECK -->
-<rect x="186" y="200" width="28" height="30" rx="8" fill="#1a1e30" stroke="#00D4FF" stroke-width="0.8"/>
-<circle cx="200" cy="215" r="5" fill="#00D4FF" fill-opacity="0.4"/>
-
-<!-- HEAD — more refined oval, authoritative -->
-<ellipse cx="200" cy="150" rx="56" ry="54" fill="url(#c-body)" stroke="#7B61FF" stroke-width="1"/>
-<!-- face mask smooth -->
-<ellipse cx="200" cy="152" rx="44" ry="38" fill="#080a14" stroke="#00D4FF" stroke-width="0.8"/>
-<!-- inner visor glow -->
-<ellipse cx="200" cy="152" rx="38" ry="32" fill="none" stroke="#00D4FF" stroke-width="0.4" stroke-opacity="0.3" filter="url(#c-gc)"/>
-
-<!-- EYES — singular, authoritative, wide -->
-<ellipse cx="184" cy="150" rx="20" ry="16" fill="#060810" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<ellipse cx="184" cy="150" rx="14" ry="11" fill="url(#c-eye)">
-  <animate attributeName="rx" values="14;17;14" dur="3s" repeatCount="indefinite"/>
-</ellipse>
-<circle cx="184" cy="150" r="6" fill="#00D4FF" fill-opacity="0.8"/>
-<circle cx="184" cy="150" r="3.5" fill="#ffffff"/>
-<circle id="c-pl" cx="185" cy="149" r="2" fill="#001520"/>
-
-<ellipse cx="216" cy="150" rx="20" ry="16" fill="#060810" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<ellipse cx="216" cy="150" rx="14" ry="11" fill="url(#c-eye)">
-  <animate attributeName="rx" values="14;17;14" dur="3s" begin="0.5s" repeatCount="indefinite"/>
-</ellipse>
-<circle cx="216" cy="150" r="6" fill="#00D4FF" fill-opacity="0.8"/>
-<circle cx="216" cy="150" r="3.5" fill="#ffffff"/>
-<circle id="c-pr" cx="217" cy="149" r="2" fill="#001520"/>
-
-<!-- brow line -->
-<line x1="165" y1="132" x2="196" y2="134" stroke="#7B61FF" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
-<line x1="204" y1="134" x2="235" y2="132" stroke="#7B61FF" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
-
-<!-- mouth — minimal authoritative line -->
-<rect x="186" y="174" width="28" height="5" rx="2.5" fill="#7B61FF" fill-opacity="0.5" filter="url(#c-gp)"/>
-
-<!-- crown plate -->
-<path d="M156,108 Q200,88 244,108" fill="none" stroke="#00D4FF" stroke-width="1" stroke-opacity="0.5"/>
-<path d="M164,100 Q200,80 236,100" fill="none" stroke="#7B61FF" stroke-width="0.6" stroke-opacity="0.3"/>
-
-<!-- twin antennae -->
-<line x1="182" y1="98" x2="172" y2="64" stroke="#7B61FF" stroke-width="1.5" filter="url(#c-gp)"/>
-<line x1="218" y1="98" x2="228" y2="64" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<circle cx="170" cy="60" r="6" fill="#7B61FF" filter="url(#c-gs)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/>
-</circle>
-<circle cx="230" cy="60" r="6" fill="#00D4FF" filter="url(#c-gs)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-
-<!-- ear panels -->
-<rect x="142" y="124" width="14" height="52" rx="5" fill="#1a1e30" stroke="#00D4FF" stroke-width="0.7"/>
-<rect x="244" y="124" width="14" height="52" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.7"/>
-<circle cx="149" cy="150" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/>
-</circle>
-<circle cx="251" cy="150" r="4" fill="#7B61FF" filter="url(#c-gp)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="3s" repeatCount="indefinite"/>
-</circle>
-</svg>
-<script>
-(function(){
-  var robots = [
-    { svg:'robot-oracle', eyes:[{id:'c-pl',cx:184,cy:150},{id:'c-pr',cx:216,cy:150}], vw:400, vh:480 },
-  ];
-  var MT = 5;
-  function track(cx, cy) {
-    robots.forEach(function(r){
-      var svg = document.getElementById(r.svg);
-      if (!svg) return;
-      var rect = svg.getBoundingClientRect();
-      var mx = (cx - rect.left) * (r.vw / rect.width);
-      var my = (cy - rect.top)  * (r.vh / rect.height);
-      r.eyes.forEach(function(e){
-        var p = document.getElementById(e.id);
-        if (!p) return;
-        var dx = mx - e.cx, dy = my - e.cy;
-        var d = Math.sqrt(dx*dx + dy*dy) || 1;
-        var t = Math.min(d/50, 1) * MT;
-        p.setAttribute('cx', (e.cx + dx/d*t).toFixed(2));
-        p.setAttribute('cy', (e.cy + dy/d*t).toFixed(2));
-      });
-    });
-  }
-  document.addEventListener('mousemove', function(e){ track(e.clientX, e.clientY); });
-})();
-</script>
-</div>
-</div>
 <div class="bento-item glass-card stats-card">
 <div class="stat-tier">
 <span class="stat-percent">8%</span>
@@ -992,6 +978,112 @@ blockquote.pull-quote cite {
 </div>
 </div>
 <div class="tab-content" id="tab-security">
+<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:20px 0 8px 0;">
+<svg id="robot-guardian" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto">
+<defs>
+  <filter id="gd-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gd-soft"><feGaussianBlur stdDeviation="10"/></filter>
+  <linearGradient id="gd-body" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a2a1a"/><stop offset="100%" stop-color="#0a0f0a"/></linearGradient>
+  <linearGradient id="gd-shield" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#065f46"/></linearGradient>
+  <linearGradient id="gd-accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient>
+</defs>
+
+<ellipse cx="200" cy="435" rx="110" ry="16" fill="#10B981" opacity="0.15" filter="url(#gd-soft)"/>
+
+<!-- Security audit text floating -->
+<text x="20" y="90" font-family="monospace" font-size="8" fill="#10B981" opacity="0.5">CERTIK:BBB</text>
+<text x="295" y="120" font-family="monospace" font-size="8" fill="#10B981" opacity="0.5">BEOSIN:OK</text>
+<text x="25" y="220" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.4">AID:SECURE</text>
+<text x="295" y="370" font-family="monospace" font-size="8" fill="#10B981" opacity="0.4">AVE:PASS</text>
+<!-- Lock icons floating -->
+<text x="340" y="200" font-size="18" opacity="0.25">🔒</text>
+<text x="30" y="350" font-size="16" opacity="0.2">🛡️</text>
+
+<!-- Legs - thick armored -->
+<rect x="148" y="385" width="40" height="65" rx="10" fill="url(#gd-body)" stroke="#10B981" stroke-width="2"/>
+<rect x="212" y="385" width="40" height="65" rx="10" fill="url(#gd-body)" stroke="#10B981" stroke-width="2"/>
+<!-- Knee armor plates -->
+<rect x="146" y="405" width="44" height="12" rx="4" fill="#0a1a0a" stroke="#10B981" stroke-width="1.5"/>
+<rect x="210" y="405" width="44" height="12" rx="4" fill="#0a1a0a" stroke="#10B981" stroke-width="1.5"/>
+<!-- Feet -->
+<rect x="136" y="440" width="60" height="18" rx="7" fill="#060f06" stroke="#10B981" stroke-width="2"/>
+<rect x="200" y="440" width="60" height="18" rx="7" fill="#060f06" stroke="#10B981" stroke-width="2"/>
+
+<!-- Body - broad, armored -->
+<rect x="105" y="215" width="190" height="180" rx="22" fill="url(#gd-body)" stroke="#10B981" stroke-width="2.5"/>
+<!-- Shoulder armor -->
+<rect x="95" y="220" width="30" height="50" rx="10" fill="#0a1a0a" stroke="#10B981" stroke-width="1.5"/>
+<rect x="275" y="220" width="30" height="50" rx="10" fill="#0a1a0a" stroke="#10B981" stroke-width="1.5"/>
+<!-- Chest armor plate -->
+<rect x="128" y="238" width="144" height="90" rx="12" fill="#060f06" stroke="#10B981" stroke-width="1.5"/>
+<!-- AID on chest -->
+<text x="155" y="270" font-family="'Space Grotesk',sans-serif" font-size="24" font-weight="800" fill="url(#gd-accent)" filter="url(#gd-glow)">AID</text>
+<text x="151" y="288" font-family="monospace" font-size="7" fill="#10B981">TRIPLE AUDITED</text>
+<!-- Audit badge row -->
+<rect x="132" y="298" width="32" height="14" rx="4" fill="#065f46" stroke="#10B981" stroke-width="1"/>
+<text x="136" y="309" font-family="monospace" font-size="7" fill="#10B981">CERT</text>
+<rect x="168" y="298" width="32" height="14" rx="4" fill="#065f46" stroke="#10B981" stroke-width="1"/>
+<text x="172" y="309" font-family="monospace" font-size="7" fill="#10B981">BEOS</text>
+<rect x="204" y="298" width="32" height="14" rx="4" fill="#065f46" stroke="#10B981" stroke-width="1"/>
+<text x="208" y="309" font-family="monospace" font-size="7" fill="#10B981">AVE</text>
+<!-- Status lights -->
+<circle cx="148" cy="345" r="6" fill="#10B981" filter="url(#gd-glow)"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
+<circle cx="168" cy="345" r="6" fill="#10B981" filter="url(#gd-glow)"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite"/></circle>
+<circle cx="188" cy="345" r="6" fill="#10B981" filter="url(#gd-glow)"><animate attributeName="opacity" values="1;0.4;1" dur="1s" repeatCount="indefinite"/></circle>
+<text x="205" y="350" font-family="monospace" font-size="8" fill="#10B981">SECURE</text>
+
+<!-- Left arm holds big shield -->
+<rect x="48" y="230" width="55" height="22" rx="11" fill="url(#gd-body)" stroke="#10B981" stroke-width="1.5"/>
+<!-- Shield -->
+<path d="M10 255 L10 315 Q10 340 50 355 Q90 340 90 315 L90 255 Q50 235 10 255Z" fill="url(#gd-shield)" stroke="#10B981" stroke-width="2" filter="url(#gd-glow)"/>
+<path d="M50 265 L50 340" stroke="#065f46" stroke-width="2"/>
+<path d="M20 290 L80 290" stroke="#065f46" stroke-width="2"/>
+<text x="30" y="283" font-family="monospace" font-size="10" font-weight="800" fill="#fff">AID</text>
+<text x="33" y="305" font-family="monospace" font-size="7" fill="#a7f3d0">SAFE</text>
+<circle cx="50" cy="320" r="8" fill="#10B981" opacity="0.5" filter="url(#gd-glow)"/>
+
+<!-- Right arm - thumbs up -->
+<rect x="297" y="230" width="55" height="22" rx="11" fill="url(#gd-body)" stroke="#10B981" stroke-width="1.5"/>
+<circle cx="350" cy="241" r="18" fill="#0a1a0a" stroke="#10B981" stroke-width="1.5"/>
+<!-- Thumbs up -->
+<rect x="344" y="224" width="10" height="14" rx="4" fill="#10B981"/>
+<rect x="334" y="234" width="30" height="10" rx="4" fill="#10B981"/>
+<rect x="334" y="244" width="30" height="6" rx="2" fill="#10B981" opacity="0.7"/>
+
+<!-- Neck -->
+<rect x="174" y="195" width="52" height="22" rx="10" fill="url(#gd-body)" stroke="#10B981" stroke-width="2"/>
+
+<!-- Head - helmet style -->
+<rect x="125" y="85" width="150" height="115" rx="25" fill="url(#gd-body)" stroke="#10B981" stroke-width="2.5"/>
+<!-- Helmet top ridge -->
+<rect x="185" y="75" width="30" height="18" rx="6" fill="#0a1a0a" stroke="#10B981" stroke-width="2"/>
+<!-- Helmet visor -->
+<rect x="135" y="100" width="130" height="52" rx="12" fill="#030a03" stroke="#10B981" stroke-width="1.5"/>
+<!-- Eyes - determined/confident -->
+<rect x="145" y="110" width="44" height="22" rx="8" fill="#050f05"/>
+<circle id="gd-el" cx="167" cy="121" r="8" fill="#10B981" filter="url(#gd-glow)"/>
+<circle id="gd-elp" cx="167" cy="121" r="4" fill="#fff"/>
+<rect x="211" y="110" width="44" height="22" rx="8" fill="#050f05"/>
+<circle id="gd-er" cx="233" cy="121" r="8" fill="#10B981" filter="url(#gd-glow)"/>
+<circle id="gd-erp" cx="233" cy="121" r="4" fill="#fff"/>
+<!-- Brow ridge - slight frown but friendly -->
+<rect x="145" y="105" width="44" height="7" rx="3" fill="#0a1a0a" stroke="#10B981" stroke-width="1"/>
+<rect x="211" y="105" width="44" height="7" rx="3" fill="#0a1a0a" stroke="#10B981" stroke-width="1"/>
+<!-- Cheek scan lines -->
+<line x1="135" y1="140" x2="155" y2="140" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+<line x1="245" y1="140" x2="265" y2="140" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+<!-- Confident grin -->
+<path d="M155 160 Q200 178 245 160" stroke="#10B981" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gd-glow)"/>
+<!-- Chin strap -->
+<rect x="145" y="185" width="110" height="12" rx="6" fill="#0a1a0a" stroke="#10B981" stroke-width="1"/>
+
+<style>
+#robot-guardian { animation: float-guardian 4.5s ease-in-out infinite; transform-origin: 200px 300px; }
+@keyframes float-guardian { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-7px) rotate(1deg)} }
+</style>
+</svg>
+</div>
+
 <div class="section-padding" style="; position: relative; overflow: hidden;">
 <div class="bg-orbs" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none;">
 <div class="orb orb-1" style="width: 40vw; height: 40vw;"></div>
@@ -1185,6 +1277,116 @@ blockquote.pull-quote cite {
 </div>
 <div class="tab-content" id="tab-ecosystem"><section class="credibility-section section-padding" id="credibility" style="background: rgba(0,0,0,0.2);">
 <div class="container">
+<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:20px 0 8px 0;">
+<svg id="robot-cosmos" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto">
+<defs>
+  <filter id="cs-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="cs-soft"><feGaussianBlur stdDeviation="12"/></filter>
+  <radialGradient id="cs-body" cx="40%" cy="30%"><stop offset="0%" stop-color="#2d1b69"/><stop offset="100%" stop-color="#0a0b14"/></radialGradient>
+  <radialGradient id="cs-glow-bg" cx="50%" cy="50%"><stop offset="0%" stop-color="#7B61FF" stop-opacity="0.3"/><stop offset="100%" stop-color="#7B61FF" stop-opacity="0"/></radialGradient>
+</defs>
+
+<!-- Galaxy glow background -->
+<circle cx="200" cy="240" r="160" fill="url(#cs-glow-bg)" filter="url(#cs-soft)"/>
+
+<!-- Star field -->
+<circle cx="50" cy="60" r="1.5" fill="#fff" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/></circle>
+<circle cx="350" cy="80" r="1" fill="#fff" opacity="0.5"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.5s" repeatCount="indefinite"/></circle>
+<circle cx="80" cy="180" r="1" fill="#00D4FF" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/></circle>
+<circle cx="330" cy="300" r="1.5" fill="#7B61FF" opacity="0.6"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="2.5s" repeatCount="indefinite"/></circle>
+<circle cx="40" cy="380" r="1" fill="#fff" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle cx="360" cy="420" r="1.5" fill="#00D4FF" opacity="0.5"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="2.2s" repeatCount="indefinite"/></circle>
+
+<!-- Orbiting ecosystem icons -->
+<g>
+  <animateTransform attributeName="transform" type="rotate" values="0 200 240;360 200 240" dur="12s" repeatCount="indefinite"/>
+  <circle cx="345" cy="240" r="16" fill="#7B61FF" opacity="0.9"/>
+  <text x="337" y="245" font-size="11" fill="#fff" font-weight="800">BSC</text>
+</g>
+<g>
+  <animateTransform attributeName="transform" type="rotate" values="120 200 240;480 200 240" dur="12s" repeatCount="indefinite"/>
+  <circle cx="345" cy="240" r="16" fill="#00D4FF" opacity="0.9"/>
+  <text x="339" y="245" font-size="11" fill="#0a0b14" font-weight="800">ETH</text>
+</g>
+<g>
+  <animateTransform attributeName="transform" type="rotate" values="240 200 240;600 200 240" dur="12s" repeatCount="indefinite"/>
+  <circle cx="345" cy="240" r="16" fill="#10B981" opacity="0.9"/>
+  <text x="337" y="245" font-size="9" fill="#fff" font-weight="800">POLY</text>
+</g>
+
+<!-- AID text floating -->
+<text x="18" y="100" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.45">AID.SOCIALFI</text>
+<text x="290" y="130" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.4">AID.EX</text>
+<text x="18" y="420" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.4">AID.DATA</text>
+<text x="300" y="440" font-family="monospace" font-size="8" fill="#10B981" opacity="0.4">LIVE!</text>
+
+<!-- Round cute legs -->
+<ellipse cx="170" cy="418" rx="26" ry="45" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2"/>
+<ellipse cx="230" cy="418" rx="26" ry="45" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2"/>
+<!-- Cute round feet -->
+<ellipse cx="170" cy="456" rx="32" ry="14" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+<ellipse cx="230" cy="456" rx="32" ry="14" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+
+<!-- Chubby body -->
+<ellipse cx="200" cy="330" rx="95" ry="100" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2"/>
+<!-- Big belly AID badge -->
+<circle cx="200" cy="325" r="55" fill="#0d0b1e" stroke="#7B61FF" stroke-width="1.5"/>
+<text x="170" y="315" font-family="'Space Grotesk',sans-serif" font-size="26" font-weight="800" fill="#7B61FF" filter="url(#cs-glow)">AID</text>
+<text x="165" y="333" font-family="monospace" font-size="8" fill="#00D4FF">ECOSYSTEM</text>
+<!-- Orbiting dot around belly -->
+<circle r="6" fill="#00D4FF" filter="url(#cs-glow)">
+  <animateMotion dur="3s" repeatCount="indefinite" path="M200,270 a55,55 0 1,1 0.1,0"/>
+</circle>
+
+<!-- Stubby arms - waving! -->
+<ellipse cx="100" cy="305" rx="45" ry="22" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2" transform="rotate(-25 100 305)"/>
+<ellipse cx="300" cy="285" rx="45" ry="22" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2" transform="rotate(35 300 285)"/>
+<!-- Hands - open wave -->
+<circle cx="65" cy="285" r="20" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+<circle cx="335" cy="268" r="20" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+<!-- Wave fingers right -->
+<line x1="330" y1="250" x2="325" y2="244" stroke="#7B61FF" stroke-width="3" stroke-linecap="round"/>
+<line x1="340" y1="248" x2="340" y2="241" stroke="#7B61FF" stroke-width="3" stroke-linecap="round"/>
+<line x1="350" y1="251" x2="355" y2="245" stroke="#7B61FF" stroke-width="3" stroke-linecap="round"/>
+
+<!-- Neck -->
+<ellipse cx="200" cy="222" rx="28" ry="12" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="1.5"/>
+
+<!-- Big round head -->
+<circle cx="200" cy="155" r="85" fill="url(#cs-body)" stroke="#7B61FF" stroke-width="2.5"/>
+<!-- Cute big eyes -->
+<circle cx="165" cy="148" r="22" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+<circle id="cs-el" cx="165" cy="148" r="14" fill="#7B61FF" opacity="0.9" filter="url(#cs-glow)"/>
+<circle id="cs-elp" cx="168" cy="145" r="7" fill="#fff"/>
+<circle cx="172" cy="141" r="3" fill="#fff"/><!-- sparkle -->
+<circle cx="155" cy="155" r="2" fill="#fff" opacity="0.6"/>
+
+<circle cx="235" cy="148" r="22" fill="#0d0b1e" stroke="#7B61FF" stroke-width="2"/>
+<circle id="cs-er" cx="235" cy="148" r="14" fill="#7B61FF" opacity="0.9" filter="url(#cs-glow)"/>
+<circle id="cs-erp" cx="238" cy="145" r="7" fill="#fff"/>
+<circle cx="242" cy="141" r="3" fill="#fff"/><!-- sparkle -->
+
+<!-- HUGE grin -->
+<path d="M148 178 Q200 215 252 178" stroke="#00D4FF" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#cs-glow)"/>
+<path d="M148 178 Q200 215 252 178" stroke="#7B61FF" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.2"/>
+<!-- Rosy cheeks -->
+<circle cx="148" cy="170" r="18" fill="#7B61FF" opacity="0.2"/>
+<circle cx="252" cy="170" r="18" fill="#7B61FF" opacity="0.2"/>
+
+<!-- Cute antennas -->
+<line x1="178" y1="72" x2="158" y2="48" stroke="#7B61FF" stroke-width="2.5"/>
+<circle cx="158" cy="44" r="8" fill="#00D4FF" filter="url(#cs-glow)"><animate attributeName="r" values="8;11;8" dur="2s" repeatCount="indefinite"/></circle>
+<line x1="222" y1="72" x2="242" y2="48" stroke="#7B61FF" stroke-width="2.5"/>
+<circle cx="242" cy="44" r="8" fill="#7B61FF" filter="url(#cs-glow)"><animate attributeName="r" values="11;8;11" dur="2s" repeatCount="indefinite"/></circle>
+<!-- Bow on head (cute!) -->
+<path d="M185 75 Q200 62 215 75 Q200 88 185 75Z" fill="#7B61FF" opacity="0.7" filter="url(#cs-glow)"/>
+
+<style>
+#robot-cosmos { animation: float-cosmos 5s ease-in-out infinite; transform-origin: 200px 300px; }
+@keyframes float-cosmos { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-10px) scale(1.02)} }
+</style>
+</svg>
+</div>
 <div class="section-header">
 <h2>Live From the AID Ecosystem</h2>
 <p>Verified milestones and updates direct from official AIDAv2 channels.</p>
@@ -1458,6 +1660,112 @@ blockquote.pull-quote cite {
 <div class="orb orb-2" style="width: 30vw; height: 30vw;"></div>
 </div>
 <div class="container" style="; position: relative; z-index: 1;">
+<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:20px 0 8px 0;">
+<svg id="robot-cipher" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto">
+<defs>
+  <filter id="cp-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="cp-soft"><feGaussianBlur stdDeviation="10"/></filter>
+  <linearGradient id="cp-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#0d0d1a"/></linearGradient>
+  <linearGradient id="cp-suit" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#12122a"/><stop offset="100%" stop-color="#080812"/></linearGradient>
+  <linearGradient id="cp-accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient>
+</defs>
+
+<ellipse cx="200" cy="458" rx="95" ry="14" fill="#7B61FF" opacity="0.15" filter="url(#cp-soft)"/>
+
+<!-- Team/connection lines background -->
+<text x="22" y="80" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.35">TEAM:GLOBAL</text>
+<text x="285" y="100" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.35">APAC:BD</text>
+<text x="18" y="200" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.3">AID:NETWORK</text>
+<text x="295" y="260" font-family="monospace" font-size="8" fill="#00D4FF" opacity="0.3">100K+</text>
+<text x="25" y="390" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.3">NODES:2400</text>
+
+<!-- Slim elegant legs -->
+<rect x="162" y="395" width="30" height="75" rx="6" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="208" y="395" width="30" height="75" rx="6" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Shoe-like feet -->
+<rect x="152" y="458" width="48" height="16" rx="5" fill="#080812" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="200" y="458" width="50" height="16" rx="5" fill="#080812" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Trouser line -->
+<line x1="177" y1="395" x2="177" y2="465" stroke="#7B61FF" stroke-width="0.5" opacity="0.4"/>
+<line x1="223" y1="395" x2="223" y2="465" stroke="#7B61FF" stroke-width="0.5" opacity="0.4"/>
+
+<!-- Body - suit-style, tall and slim -->
+<rect x="118" y="210" width="164" height="198" rx="18" fill="url(#cp-suit)" stroke="#7B61FF" stroke-width="2"/>
+<!-- Suit lapels -->
+<path d="M200 215 L155 255 L155 310 L118 310 L118 210 Q118 210 145 210 Z" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1"/>
+<path d="M200 215 L245 255 L245 310 L282 310 L282 210 Q282 210 255 210 Z" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1"/>
+<!-- Tie / AID badge center -->
+<path d="M193 215 L200 230 L207 215 L204 280 L196 280 Z" fill="url(#cp-accent)" opacity="0.9"/>
+<!-- AID on tie pin -->
+<rect x="191" y="248" width="18" height="8" rx="2" fill="#0a0a1a" stroke="#7B61FF" stroke-width="1"/>
+<text x="192" y="256" font-family="monospace" font-size="6" fill="#7B61FF">AID</text>
+<!-- Chest pocket square -->
+<rect x="230" y="230" width="20" height="12" rx="2" fill="#7B61FF" opacity="0.4"/>
+<text x="232" y="240" font-size="8" fill="#fff">✦</text>
+<!-- Belt / waist line -->
+<rect x="118" y="320" width="164" height="12" rx="4" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1"/>
+<rect x="189" y="318" width="22" height="16" rx="3" fill="#7B61FF" opacity="0.6" filter="url(#cp-glow)"/>
+<text x="192" y="330" font-family="monospace" font-size="7" fill="#fff">AID</text>
+<!-- Shirt buttons -->
+<circle cx="200" cy="348" r="3.5" fill="#7B61FF" opacity="0.6"/>
+<circle cx="200" cy="364" r="3.5" fill="#7B61FF" opacity="0.6"/>
+<circle cx="200" cy="380" r="3.5" fill="#7B61FF" opacity="0.6"/>
+
+<!-- Left arm - extended for handshake -->
+<rect x="52" y="220" width="64" height="22" rx="11" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="1.5" transform="rotate(10 84 231)"/>
+<!-- Handshake hand -->
+<rect x="30" y="238" width="38" height="30" rx="8" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1.5"/>
+<rect x="30" y="230" width="8" height="14" rx="3" fill="#7B61FF" opacity="0.8"/>
+<rect x="40" y="228" width="8" height="14" rx="3" fill="#7B61FF" opacity="0.8"/>
+<rect x="50" y="228" width="8" height="14" rx="3" fill="#7B61FF" opacity="0.8"/>
+<rect x="60" y="230" width="8" height="14" rx="3" fill="#7B61FF" opacity="0.8"/>
+
+<!-- Right arm - holding AID token -->
+<rect x="284" y="220" width="64" height="22" rx="11" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="1.5" transform="rotate(-10 316 231)"/>
+<!-- Hand holding glowing token -->
+<circle cx="358" cy="230" r="20" fill="#0d0d1a" stroke="#7B61FF" stroke-width="1.5"/>
+<circle cx="358" cy="218" r="12" fill="#7B61FF" opacity="0.9" filter="url(#cp-glow)"><animate attributeName="opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite"/></circle>
+<text x="350" y="223" font-family="monospace" font-size="8" font-weight="800" fill="#fff">AID</text>
+
+<!-- Neck / collar -->
+<rect x="174" y="192" width="52" height="22" rx="8" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="1.5"/>
+<!-- Collar white shirt -->
+<path d="M182 196 L200 210 L218 196" fill="none" stroke="#7B61FF" stroke-width="1" opacity="0.6"/>
+
+<!-- Head - sleek oval -->
+<ellipse cx="200" cy="130" rx="72" ry="68" fill="url(#cp-body)" stroke="#7B61FF" stroke-width="2"/>
+<!-- Forehead AID text -->
+<text x="178" y="92" font-family="monospace" font-size="8" fill="#7B61FF" opacity="0.6">AID TEAM</text>
+<!-- Professional visor/glasses -->
+<rect x="138" y="112" width="50" height="28" rx="8" fill="#06060d" stroke="url(#cp-accent)" stroke-width="1.5"/>
+<rect x="196" y="116" width="10" height="2" rx="1" fill="url(#cp-accent)"/>
+<rect x="210" y="112" width="50" height="28" rx="8" fill="#06060d" stroke="url(#cp-accent)" stroke-width="1.5"/>
+<!-- Professional eyes -->
+<circle id="cp-el" cx="163" cy="126" r="9" fill="#7B61FF" opacity="0.85" filter="url(#cp-glow)"/>
+<circle id="cp-elp" cx="163" cy="126" r="4.5" fill="#fff"/>
+<circle id="cp-er" cx="235" cy="126" r="9" fill="#7B61FF" opacity="0.85" filter="url(#cp-glow)"/>
+<circle id="cp-erp" cx="235" cy="126" r="4.5" fill="#fff"/>
+<!-- Raised eyebrows (friendly/eager) -->
+<path d="M140 108 Q163 100 186 108" stroke="#7B61FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M214 108 Q235 100 260 108" stroke="#7B61FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+<!-- Confident smile -->
+<path d="M162 155 Q200 172 238 155" stroke="#00D4FF" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#cp-glow)"/>
+<!-- Dimples -->
+<circle cx="158" cy="152" r="4" fill="#7B61FF" opacity="0.25"/>
+<circle cx="242" cy="152" r="4" fill="#7B61FF" opacity="0.25"/>
+
+<!-- Professional antenna - like a wifi icon -->
+<line x1="200" y1="63" x2="200" y2="74" stroke="#7B61FF" stroke-width="2.5"/>
+<path d="M185 57 Q200 48 215 57" fill="none" stroke="#7B61FF" stroke-width="2" stroke-linecap="round" filter="url(#cp-glow)"/>
+<path d="M177 49 Q200 37 223 49" fill="none" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+<circle cx="200" cy="63" r="4" fill="#7B61FF" filter="url(#cp-glow)"/>
+
+<style>
+#robot-cipher { animation: float-cipher 4s ease-in-out infinite; transform-origin: 200px 320px; }
+@keyframes float-cipher { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+</style>
+</svg>
+</div>
 <div class="section-header">
 <h2>The Team Behind AID</h2>
 <p>The AID team has secured funding and technical support from venture capital firms, ensuring
@@ -1959,216 +2267,7 @@ blockquote.pull-quote cite {
 </div>
 </div>
 <div class="bento-item glass-card image-card" style="display:flex;align-items:center;justify-content:center;min-height:280px;">
-<div class="oracle-robot-wrapper" style="display:flex;align-items:center;justify-content:center;padding:16px 0;">
-<style>
-#robot-oracle { animation: float-oracle 5s ease-in-out infinite; transform-origin: 200px 300px; }
-@keyframes float-oracle { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-.oracle-robot-wrapper svg { max-width:380px; width:100%; height:auto; cursor:crosshair; }
-</style>
-<svg id="robot-oracle" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-<defs>
-  <filter id="c-gc"><feGaussianBlur stdDeviation="3" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="c-gp"><feGaussianBlur stdDeviation="5" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="c-gs"><feGaussianBlur stdDeviation="9" result="bl"/><feMerge><feMergeNode in="bl"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <linearGradient id="c-body" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1e2238"/><stop offset="100%" stop-color="#0e1020"/>
-  </linearGradient>
-  <linearGradient id="c-grad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D4FF"/>
-  </linearGradient>
-  <radialGradient id="c-orb" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.9"/>
-    <stop offset="100%" stop-color="#7B61FF" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="c-eye" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00D4FF"/>
-    <stop offset="70%" stop-color="#0088aa"/>
-    <stop offset="100%" stop-color="#004466" stop-opacity="0"/>
-  </radialGradient>
-</defs>
 
-<!-- Ground glow -->
-<ellipse cx="200" cy="470" rx="150" ry="12" fill="#7B61FF" fill-opacity="0.12"/>
-
-<!-- HOLOGRAPHIC RINGS around body — the data halo -->
-<!-- ring 1 -->
-<ellipse cx="200" cy="280" rx="150" ry="35" fill="none" stroke="#7B61FF" stroke-width="0.8" stroke-dasharray="8 4" stroke-opacity="0.5">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 280" to="360 200 280" dur="10s" repeatCount="indefinite"/>
-</ellipse>
-<!-- ring 1 data dot -->
-<circle cx="350" cy="280" r="5" fill="#7B61FF" filter="url(#c-gp)">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 280" to="360 200 280" dur="10s" repeatCount="indefinite"/>
-</circle>
-<!-- ring 2 -->
-<ellipse cx="200" cy="280" rx="168" ry="42" fill="none" stroke="#00D4FF" stroke-width="0.5" stroke-dasharray="4 8" stroke-opacity="0.35">
-  <animateTransform attributeName="transform" type="rotate" from="360 200 280" to="0 200 280" dur="14s" repeatCount="indefinite"/>
-</ellipse>
-<!-- ring 2 data dot -->
-<circle cx="32" cy="280" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animateTransform attributeName="transform" type="rotate" from="360 200 280" to="0 200 280" dur="14s" repeatCount="indefinite"/>
-</circle>
-<!-- ring 3 tilted -->
-<ellipse cx="200" cy="240" rx="130" ry="20" fill="none" stroke="#7B61FF" stroke-width="0.4" stroke-dasharray="3 5" stroke-opacity="0.25" transform="rotate(-15 200 240)">
-  <animateTransform attributeName="transform" type="rotate" from="-15 200 240" to="345 200 240" dur="20s" repeatCount="indefinite" additive="sum"/>
-</ellipse>
-
-<!-- chart sparklines floating left -->
-<g transform="translate(28,200)">
-  <rect x="0" y="0" width="60" height="50" rx="5" fill="#0c0e18" stroke="#7B61FF" stroke-width="0.6" stroke-opacity="0.5"/>
-  <text x="30" y="13" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#9CA3AF">PORTFOLIO</text>
-  <polyline points="6,40 14,32 22,35 30,22 38,26 46,14 54,10" fill="none" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <polyline points="6,40 14,32 22,35 30,22 38,26 46,14 54,10" fill="none" stroke="#00D4FF" stroke-width="0.5" stroke-opacity="0.3"/>
-</g>
-
-<!-- yield panel right -->
-<g transform="translate(316,220)">
-  <rect x="-26" y="0" width="60" height="60" rx="5" fill="#0c0e18" stroke="#00D4FF" stroke-width="0.6" stroke-opacity="0.5"/>
-  <text x="4" y="14" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#9CA3AF">DAILY YIELD</text>
-  <text x="4" y="30" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="14" font-weight="700" fill="#00D4FF">0.63%</text>
-  <text x="4" y="46" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="7" fill="#10B981">● PROTECTED</text>
-</g>
-
-<!-- LEGS -->
-<path d="M172,390 L176,460 L195,460 L196,390Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<path d="M204,390 L205,460 L224,460 L228,390Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<ellipse cx="184" cy="436" rx="12" ry="8" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1" filter="url(#c-gc)"/>
-<ellipse cx="216" cy="436" rx="12" ry="8" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1" filter="url(#c-gc)"/>
-<rect x="166" y="456" width="36" height="10" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.6"/>
-<rect x="198" y="456" width="36" height="10" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.6"/>
-
-<!-- ARMS arms slightly raised, palms forward — presenting data -->
-<path d="M120,230 Q110,280 114,340 L138,340 Q140,282 148,232Z" fill="url(#c-body)" stroke="#00D4FF" stroke-width="0.8"/>
-<path d="M252,232 Q260,282 260,340 L284,340 Q280,280 290,230Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.8"/>
-<!-- hands open/flat -->
-<ellipse cx="126" cy="344" rx="18" ry="10" fill="#1a1e30" stroke="#00D4FF" stroke-width="1" filter="url(#c-gc)"/>
-<ellipse cx="274" cy="344" rx="18" ry="10" fill="#1a1e30" stroke="#7B61FF" stroke-width="1" filter="url(#c-gp)"/>
-<!-- data orbs above each palm -->
-<circle cx="126" cy="328" r="8" fill="url(#c-orb)" filter="url(#c-gs)">
-  <animate attributeName="r" values="8;11;8" dur="2s" repeatCount="indefinite"/>
-  <animate attributeName="cy" values="328;322;328" dur="2s" repeatCount="indefinite"/>
-</circle>
-<circle cx="274" cy="328" r="8" fill="none" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)">
-  <animate attributeName="r" values="8;11;8" dur="2s" begin="1s" repeatCount="indefinite"/>
-  <animate attributeName="cy" values="328;322;328" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-<circle cx="274" cy="328" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animate attributeName="cy" values="328;322;328" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-<!-- shoulder joints -->
-<circle cx="145" cy="232" r="14" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gc)"/>
-<circle cx="145" cy="232" r="7" fill="#7B61FF" fill-opacity="0.5"/>
-<circle cx="255" cy="232" r="14" fill="#1a1e30" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gp)"/>
-<circle cx="255" cy="232" r="7" fill="#00D4FF" fill-opacity="0.5"/>
-
-<!-- TORSO -->
-<path d="M148,228 Q140,310 142,390 L258,390 Q260,310 252,228Z" fill="url(#c-body)" stroke="#7B61FF" stroke-width="0.9"/>
-<!-- central energy channel -->
-<line x1="200" y1="250" x2="200" y2="385" stroke="url(#c-grad)" stroke-width="1.5" stroke-opacity="0.4" filter="url(#c-gc)"/>
-<!-- chest plate -->
-<ellipse cx="200" cy="300" rx="46" ry="58" fill="#0c0e18" stroke="#7B61FF" stroke-width="0.7" stroke-opacity="0.5"/>
-<!-- energy core -->
-<circle cx="200" cy="298" r="36" fill="none" stroke="url(#c-grad)" stroke-width="0.6" stroke-dasharray="6 4">
-  <animateTransform attributeName="transform" type="rotate" from="0 200 298" to="360 200 298" dur="6s" repeatCount="indefinite"/>
-</circle>
-<circle cx="200" cy="298" r="26" fill="none" stroke="#7B61FF" stroke-width="1" stroke-opacity="0.4"/>
-<circle cx="200" cy="298" r="18" fill="#0a0c18" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<!-- eye of providence style — triangle in circle -->
-<polygon points="200,282 216,308 184,308" fill="none" stroke="url(#c-grad)" stroke-width="1.5" filter="url(#c-gp)"/>
-<circle cx="200" cy="298" r="5" fill="#7B61FF" filter="url(#c-gs)"/>
-<circle cx="200" cy="298" r="2.5" fill="#00D4FF"/>
-<!-- abs plates -->
-<rect x="178" y="348" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-<rect x="178" y="360" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-<rect x="178" y="372" width="44" height="8" rx="3" fill="#131528" stroke="#7B61FF" stroke-width="0.5" stroke-opacity="0.4"/>
-
-<!-- NECK -->
-<rect x="186" y="200" width="28" height="30" rx="8" fill="#1a1e30" stroke="#00D4FF" stroke-width="0.8"/>
-<circle cx="200" cy="215" r="5" fill="#00D4FF" fill-opacity="0.4"/>
-
-<!-- HEAD — more refined oval, authoritative -->
-<ellipse cx="200" cy="150" rx="56" ry="54" fill="url(#c-body)" stroke="#7B61FF" stroke-width="1"/>
-<!-- face mask smooth -->
-<ellipse cx="200" cy="152" rx="44" ry="38" fill="#080a14" stroke="#00D4FF" stroke-width="0.8"/>
-<!-- inner visor glow -->
-<ellipse cx="200" cy="152" rx="38" ry="32" fill="none" stroke="#00D4FF" stroke-width="0.4" stroke-opacity="0.3" filter="url(#c-gc)"/>
-
-<!-- EYES — singular, authoritative, wide -->
-<ellipse cx="184" cy="150" rx="20" ry="16" fill="#060810" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<ellipse cx="184" cy="150" rx="14" ry="11" fill="url(#c-eye)">
-  <animate attributeName="rx" values="14;17;14" dur="3s" repeatCount="indefinite"/>
-</ellipse>
-<circle cx="184" cy="150" r="6" fill="#00D4FF" fill-opacity="0.8"/>
-<circle cx="184" cy="150" r="3.5" fill="#ffffff"/>
-<circle id="c-pl" cx="185" cy="149" r="2" fill="#001520"/>
-
-<ellipse cx="216" cy="150" rx="20" ry="16" fill="#060810" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<ellipse cx="216" cy="150" rx="14" ry="11" fill="url(#c-eye)">
-  <animate attributeName="rx" values="14;17;14" dur="3s" begin="0.5s" repeatCount="indefinite"/>
-</ellipse>
-<circle cx="216" cy="150" r="6" fill="#00D4FF" fill-opacity="0.8"/>
-<circle cx="216" cy="150" r="3.5" fill="#ffffff"/>
-<circle id="c-pr" cx="217" cy="149" r="2" fill="#001520"/>
-
-<!-- brow line -->
-<line x1="165" y1="132" x2="196" y2="134" stroke="#7B61FF" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
-<line x1="204" y1="134" x2="235" y2="132" stroke="#7B61FF" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
-
-<!-- mouth — minimal authoritative line -->
-<rect x="186" y="174" width="28" height="5" rx="2.5" fill="#7B61FF" fill-opacity="0.5" filter="url(#c-gp)"/>
-
-<!-- crown plate -->
-<path d="M156,108 Q200,88 244,108" fill="none" stroke="#00D4FF" stroke-width="1" stroke-opacity="0.5"/>
-<path d="M164,100 Q200,80 236,100" fill="none" stroke="#7B61FF" stroke-width="0.6" stroke-opacity="0.3"/>
-
-<!-- twin antennae -->
-<line x1="182" y1="98" x2="172" y2="64" stroke="#7B61FF" stroke-width="1.5" filter="url(#c-gp)"/>
-<line x1="218" y1="98" x2="228" y2="64" stroke="#00D4FF" stroke-width="1.5" filter="url(#c-gc)"/>
-<circle cx="170" cy="60" r="6" fill="#7B61FF" filter="url(#c-gs)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/>
-</circle>
-<circle cx="230" cy="60" r="6" fill="#00D4FF" filter="url(#c-gs)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2s" begin="1s" repeatCount="indefinite"/>
-</circle>
-
-<!-- ear panels -->
-<rect x="142" y="124" width="14" height="52" rx="5" fill="#1a1e30" stroke="#00D4FF" stroke-width="0.7"/>
-<rect x="244" y="124" width="14" height="52" rx="5" fill="#1a1e30" stroke="#7B61FF" stroke-width="0.7"/>
-<circle cx="149" cy="150" r="4" fill="#00D4FF" filter="url(#c-gc)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/>
-</circle>
-<circle cx="251" cy="150" r="4" fill="#7B61FF" filter="url(#c-gp)">
-  <animate attributeName="opacity" values="1;0.2;1" dur="3s" repeatCount="indefinite"/>
-</circle>
-</svg>
-<script>
-(function(){
-  var robots = [
-    { svg:'robot-oracle', eyes:[{id:'c-pl',cx:184,cy:150},{id:'c-pr',cx:216,cy:150}], vw:400, vh:480 },
-  ];
-  var MT = 5;
-  function track(cx, cy) {
-    robots.forEach(function(r){
-      var svg = document.getElementById(r.svg);
-      if (!svg) return;
-      var rect = svg.getBoundingClientRect();
-      var mx = (cx - rect.left) * (r.vw / rect.width);
-      var my = (cy - rect.top)  * (r.vh / rect.height);
-      r.eyes.forEach(function(e){
-        var p = document.getElementById(e.id);
-        if (!p) return;
-        var dx = mx - e.cx, dy = my - e.cy;
-        var d = Math.sqrt(dx*dx + dy*dy) || 1;
-        var t = Math.min(d/50, 1) * MT;
-        p.setAttribute('cx', (e.cx + dx/d*t).toFixed(2));
-        p.setAttribute('cy', (e.cy + dy/d*t).toFixed(2));
-      });
-    });
-  }
-  document.addEventListener('mousemove', function(e){ track(e.clientX, e.clientY); });
-})();
-</script>
-</div>
-</div>
 </div>
 </div>
 <!-- Official Links -->
@@ -2372,5 +2471,36 @@ DeFi Yield Strategies is an independent community referral and educational hub, 
 </div>
 <!-- /LEGAL DISCLAIMER -->
 
+<script>
+(function(){
+  var robots = [
+    { svg:'robot-nexus',     eyes:[{id:'nx-elp',cx:170,cy:139}],                         vw:400, vh:500 },
+    { svg:'robot-meridian',  eyes:[],                                                     vw:400, vh:480 },
+    { svg:'robot-guardian',  eyes:[{id:'gd-elp',cx:167,cy:121},{id:'gd-erp',cx:233,cy:121}], vw:400, vh:500 },
+    { svg:'robot-cosmos',    eyes:[{id:'cs-elp',cx:168,cy:145},{id:'cs-erp',cx:238,cy:145}], vw:400, vh:500 },
+    { svg:'robot-cipher',    eyes:[{id:'cp-elp',cx:163,cy:126},{id:'cp-erp',cx:235,cy:126}], vw:400, vh:520 },
+  ];
+  var MT = 5;
+  function track(cx, cy) {
+    robots.forEach(function(r){
+      var svg = document.getElementById(r.svg);
+      if (!svg) return;
+      var rect = svg.getBoundingClientRect();
+      var mx = (cx - rect.left) * (r.vw / rect.width);
+      var my = (cy - rect.top)  * (r.vh / rect.height);
+      r.eyes.forEach(function(e){
+        var p = document.getElementById(e.id);
+        if (!p) return;
+        var dx = mx - e.cx, dy = my - e.cy;
+        var d = Math.sqrt(dx*dx + dy*dy) || 1;
+        var t = Math.min(d/50, 1) * MT;
+        p.setAttribute('cx', (e.cx + dx/d*t).toFixed(2));
+        p.setAttribute('cy', (e.cy + dy/d*t).toFixed(2));
+      });
+    });
+  }
+  document.addEventListener('mousemove', function(e){ track(e.clientX, e.clientY); });
+})();
+</script>
 </body>
 </html>

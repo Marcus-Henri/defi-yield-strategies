@@ -35,7 +35,7 @@ h1, h2, h3, h4 {
 }
 
 /* =============================================
-   CRITICAL FIX 1: RISK BANNER — FIXED POSITION
+   CRITICAL FIX 1: RISK BANNER -- FIXED POSITION
    ============================================= */
 #risk-banner {
     position: fixed !important;
@@ -282,7 +282,7 @@ main {
 .x-btn:hover { color: var(--accent-color); }
 @media (max-width: 992px) { .milestone-grid { grid-template-columns: 1fr; } .x-proof-bar { flex-direction: column; text-align: center; border-radius: 20px; padding: 1.5rem; } .x-content { flex-direction: column; gap: 0.5rem; } }
 
-/* Audit Grid — 2x2 layout */
+/* Audit Grid -- 2x2 layout */
 .audit-triple-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
 @media (max-width: 768px) { .audit-triple-grid { grid-template-columns: 1fr; } }
 .audit-badge-card { padding: 2rem; text-align: left; transition: transform 0.3s ease; }
@@ -455,3 +455,22 @@ blockquote.pull-quote cite { font-size: 12px; text-transform: uppercase; letter-
 
 /* Telegram proof bar */
 .telegram-proof { border-radius: 50px !important; }
+
+/* TWO-ROW NAV: brand name centered above tabs */
+:root { --nav-height: 96px; }
+.sticky-header {
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 6px 0 !important;
+    align-items: stretch !important;
+}
+.sticky-header > .logo-row {
+    text-align: center;
+    padding: 3px 1rem;
+    border-bottom: 1px solid rgba(123,97,255,0.1);
+}
+.sticky-header .container.nav-container {
+    padding: 4px 1rem !important;
+    justify-content: center !important;
+}
+.nav-tabs-container { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
